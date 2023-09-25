@@ -1,0 +1,39 @@
+.unordered-food-list {
+}
+.each-food-image {
+  width: 160px;
+  height: 100px;
+  flex-shrink: 0;
+  border-radius: 8px;
+}
+
+.food-text-container {
+  margin-left: 10px;
+}
+
+.each-food-list-item {
+  width: 30%;
+  display: flex;
+  margin: 15px;
+}
+
+.each-food-heading {
+  color: var(--light-blue-gray-700, #334155);
+  font-family: DM Sans;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px; /* 133.333% */
+  letter-spacing: 0.2px;
+  width: 174px;
+}
+
+.each-food-para {
+  color: var(--light-blue-gray-500, #64748b);
+  font-family: DM Sans;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 171.429% */
+  width: 174px;
+}
