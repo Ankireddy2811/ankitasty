@@ -1,5 +1,10 @@
-.unordered-food-list {
+.each-food-list-item {
+  display: flex;
+  width: 30%;
+  height: 30vh;
+  flex-grow: 1;
 }
+
 .each-food-image {
   width: 160px;
   height: 100px;
@@ -11,21 +16,14 @@
   margin-left: 10px;
 }
 
-.each-food-list-item {
-  width: 30%;
-  display: flex;
-  margin: 15px;
-}
-
 .each-food-heading {
   color: var(--light-blue-gray-700, #334155);
   font-family: DM Sans;
   font-size: 15px;
   font-style: normal;
   font-weight: 700;
-  line-height: 24px; /* 133.333% */
   letter-spacing: 0.2px;
-  width: 174px;
+  height: 14px;
 }
 
 .each-food-para {
@@ -34,6 +32,28 @@
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
-  line-height: 24px; /* 171.429% */
   width: 174px;
+  height: 14px;
+}
+.rating-container {
+  display: flex;
+  align-items: center;
+}
+.rating {
+  color: var(--Light-blue-gray-800, #1e293b);
+  font-family: DM Sans;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-left: 5px;
+}
+
+.totalReviews {
+  color: var(--Light-blue-gray-500, #64748b);
+  font-family: DM Sans;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }

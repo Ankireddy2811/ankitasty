@@ -31,7 +31,7 @@ const sortByOptions = [
 ]
 
 class Home extends Component {
-  state = {carouselsData: [], foodListsData: [], activePage: 1}
+  state = {carouselsData: [], foodListsData: [], activePage: 1, totalItems: ''}
 
   componentDidMount() {
     this.getCarouselData()
@@ -61,15 +61,16 @@ class Home extends Component {
 
   getFoodsList = async () => {
     const {activePage} = this.state
+    console.log(activePage)
     const LIMIT = 9
     const offset = (activePage - 1) * LIMIT
     const jwtToken = Cookies.get('jwt_token')
 
     const options = {
+      method: 'GET',
       headers: {
         Authorization: `Bearer ${jwtToken}`,
       },
-      method: 'GET',
     }
 
     const response = await fetch(
@@ -81,17 +82,41 @@ class Home extends Component {
     const updatedFoodListsData = data.restaurants.map(eachItem => ({
       imageUrl: eachItem.image_url,
       id: eachItem.id,
-      rating: eachItem.rating,
-      totalReviews: eachItem.total_reviews,
+      rating: eachItem.user_rating.rating,
+      totalReviews: eachItem.user_rating.total_reviews,
       name: eachItem.name,
       cuisine: eachItem.cuisine,
-      ratingColor: eachItem.rating_color,
+      ratingColor: eachItem.user_rating.rating_color,
     }))
-    this.setState({foodListsData: updatedFoodListsData})
+    this.setState({foodListsData: updatedFoodListsData, totalItems: data.total})
+  }
+
+  onLeftArrowClicked = () => {
+    const {activePage} = this.state
+    console.log('onLeftButtonClicked')
+    console.log(activePage)
+    if (activePage > 1) {
+      this.setState(
+        prevState => ({activePage: prevState.activePage - 1}),
+        this.getFoodsList,
+      )
+    }
+  }
+
+  onRightArrowClicked = () => {
+    const {activePage, totalItems} = this.state
+    console.log('onRightButtonClicked')
+    console.log(activePage)
+    if (activePage < Math.ceil(totalItems / 9)) {
+      this.setState(
+        prevState => ({activePage: prevState.activePage + 1}),
+        this.getFoodsList,
+      )
+    }
   }
 
   render() {
-    const {carouselsData, foodListsData} = this.state
+    const {carouselsData, foodListsData, totalItems, activePage} = this.state
     const settings = {
       dots: true,
       infinite: true,
@@ -143,6 +168,51 @@ class Home extends Component {
               <EachFoodItem key={eachItem.id} eachContent={eachItem} />
             ))}
           </ul>
+          <div className="pagination-container">
+            <button
+              className="arrow-button"
+              type="button"
+              onClick={this.onLeftArrowClicked}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+              >
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M9.87352 2L11 3.15074L6.25296 8L11 12.8493L9.87352 14L4.68479 8.69953C4.30425 8.3108 4.30425 7.68919 4.68479 7.30046L9.87352 2Z"
+                  fill="#334155"
+                />
+              </svg>
+            </button>
+            <p className="pagination-para">
+              {activePage} of {Math.ceil(totalItems / 9)}
+            </p>
+            <button
+              className="arrow-button"
+              type="button"
+              onClick={this.onRightArrowClicked}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+              >
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M6.12648 14L5 12.8493L9.74704 8L5 3.15074L6.12648 2L11.3152 7.30047C11.6957 7.6892 11.6957 8.31081 11.3152 8.69954L6.12648 14Z"
+                  fill="#334155"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
         <Footer />
       </div>
