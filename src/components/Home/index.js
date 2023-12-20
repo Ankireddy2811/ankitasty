@@ -2,6 +2,9 @@ import {Component} from 'react'
 
 import {BsFilterLeft} from 'react-icons/bs'
 
+import Loader from 'react-loader-spinner'
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
+
 import Slider from 'react-slick'
 
 import 'slick-carousel/slick/slick.css'
@@ -31,7 +34,13 @@ const sortByOptions = [
 ]
 
 class Home extends Component {
-  state = {carouselsData: [], foodListsData: [], activePage: 1, totalItems: ''}
+  state = {
+    carouselsData: [],
+    foodListsData: [],
+    activePage: 1,
+    totalItems: '',
+    selectedSortByValue: 'Highest',
+  }
 
   componentDidMount() {
     this.getCarouselData()
@@ -60,7 +69,7 @@ class Home extends Component {
   }
 
   getFoodsList = async () => {
-    const {activePage} = this.state
+    const {activePage, selectedSortByValue} = this.state
     console.log(activePage)
     const LIMIT = 9
     const offset = (activePage - 1) * LIMIT
@@ -74,7 +83,7 @@ class Home extends Component {
     }
 
     const response = await fetch(
-      `https://apis.ccbp.in/restaurants-list?offset=${offset}&limit=${LIMIT}`,
+      `https://apis.ccbp.in/restaurants-list?offset=${offset}&limit=${LIMIT}&sort_by_rating=${selectedSortByValue}`,
       options,
     )
     const data = await response.json()
@@ -93,8 +102,6 @@ class Home extends Component {
 
   onLeftArrowClicked = () => {
     const {activePage} = this.state
-    console.log('onLeftButtonClicked')
-    console.log(activePage)
     if (activePage > 1) {
       this.setState(
         prevState => ({activePage: prevState.activePage - 1}),
@@ -105,8 +112,6 @@ class Home extends Component {
 
   onRightArrowClicked = () => {
     const {activePage, totalItems} = this.state
-    console.log('onRightButtonClicked')
-    console.log(activePage)
     if (activePage < Math.ceil(totalItems / 9)) {
       this.setState(
         prevState => ({activePage: prevState.activePage + 1}),
@@ -115,8 +120,24 @@ class Home extends Component {
     }
   }
 
+  onChangeRatingOption = event => {
+    this.setState({selectedSortByValue: event.target.value}, this.getFoodsList)
+  }
+
+  LoaderContainer = () => (
+    <div>
+      <Loader type="threeDots" width="100" height="100" color="red" />
+    </div>
+  )
+
   render() {
-    const {carouselsData, foodListsData, totalItems, activePage} = this.state
+    const {
+      carouselsData,
+      foodListsData,
+
+      activePage,
+      selectedSortByValue,
+    } = this.state
     const settings = {
       dots: true,
       infinite: true,
@@ -128,94 +149,99 @@ class Home extends Component {
       cssEase: 'linear',
     }
     return (
-      <div className="home-container">
-        <Header />
-        <div className="carousel-container">
-          <Slider {...settings}>
-            {carouselsData.map(eachItem => (
-              <div className="each-carousel-slide">
-                <img
-                  src={eachItem.imageUrl}
-                  alt={eachItem.id}
-                  className="each-carousel-image"
-                />
-              </div>
-            ))}
-          </Slider>
-        </div>
-        <div className="popular-restarents">
-          <h1 className="popular-heading">Popular Restaurants</h1>
-
-          <div className="filter-container">
-            <p className="popular-para">
-              Select Your favourite restaurant special dish and make your day
-              happy...
-            </p>
-
-            <div className="filter-icon">
-              <BsFilterLeft fontSize={20} />
-              <select className="select-ele">
-                {sortByOptions.map(eachItem => (
-                  <option value={eachItem.value}>
-                    Sort by {eachItem.displayText}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-          <ul className="unordered-food-list">
-            {foodListsData.map(eachItem => (
-              <EachFoodItem key={eachItem.id} eachContent={eachItem} />
-            ))}
-          </ul>
-          <div className="pagination-container">
-            <button
-              className="arrow-button"
-              type="button"
-              onClick={this.onLeftArrowClicked}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-              >
-                <path
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M9.87352 2L11 3.15074L6.25296 8L11 12.8493L9.87352 14L4.68479 8.69953C4.30425 8.3108 4.30425 7.68919 4.68479 7.30046L9.87352 2Z"
-                  fill="#334155"
-                />
-              </svg>
-            </button>
-            <p className="pagination-para">
-              {activePage} of {Math.ceil(totalItems / 9)}
-            </p>
-            <button
-              className="arrow-button"
-              type="button"
-              onClick={this.onRightArrowClicked}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-              >
-                <path
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M6.12648 14L5 12.8493L9.74704 8L5 3.15074L6.12648 2L11.3152 7.30047C11.6957 7.6892 11.6957 8.31081 11.3152 8.69954L6.12648 14Z"
-                  fill="#334155"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-        <Footer />
+      <div>
+        <Loader type="threeD" width="100" height="100" color="red" />
       </div>
+      //   <div className="home-container">
+      //     <Header />
+      //     <div className="carousel-container">
+      //       <Slider {...settings}>
+      //         {carouselsData.map(eachItem => (
+      //           <div className="each-carousel-slide">
+      //             <img
+      //               src={eachItem.imageUrl}
+      //               alt={eachItem.id}
+      //               className="each-carousel-image"
+      //             />
+      //           </div>
+      //         ))}
+      //       </Slider>
+      //     </div>
+      //     <div className="popular-restarents">
+      //       <h1 className="popular-heading">Popular Restaurants</h1>
+
+      //       <div className="filter-container">
+      //         <p className="popular-para">
+      //           Select Your favourite restaurant special dish and make your day
+      //           happy...
+      //         </p>
+
+      //         <div className="filter-icon">
+      //           <BsFilterLeft fontSize={20} />
+      //           <select
+      //             className="select-ele"
+      //             value={selectedSortByValue}
+      //             onChange={this.onChangeRatingOption}
+      //           >
+      //             {sortByOptions.map(eachItem => (
+      //               <option value={eachItem.value}>
+      //                 Sort by {eachItem.displayText}
+      //               </option>
+      //             ))}
+      //           </select>
+      //         </div>
+      //       </div>
+      //       <ul className="unordered-food-list">
+      //         {foodListsData.map(eachItem => (
+      //           <EachFoodItem key={eachItem.id} eachContent={eachItem} />
+      //         ))}
+      //       </ul>
+      //       <div className="pagination-container">
+      //         <button
+      //           className="arrow-button"
+      //           type="button"
+      //           onClick={this.onLeftArrowClicked}
+      //         >
+      //           <svg
+      //             xmlns="http://www.w3.org/2000/svg"
+      //             width="16"
+      //             height="16"
+      //             viewBox="0 0 16 16"
+      //             fill="none"
+      //           >
+      //             <path
+      //               fillRule="evenodd"
+      //               clipRule="evenodd"
+      //               d="M9.87352 2L11 3.15074L6.25296 8L11 12.8493L9.87352 14L4.68479 8.69953C4.30425 8.3108 4.30425 7.68919 4.68479 7.30046L9.87352 2Z"
+      //               fill="#334155"
+      //             />
+      //           </svg>
+      //         </button>
+      //         <p className="pagination-para">{activePage} of 4</p>
+      //         <button
+      //           className="arrow-button"
+      //           type="button"
+      //           onClick={this.onRightArrowClicked}
+      //         >
+      //           <svg
+      //             xmlns="http://www.w3.org/2000/svg"
+      //             width="16"
+      //             height="16"
+      //             viewBox="0 0 16 16"
+      //             fill="none"
+      //           >
+      //             <path
+      //               fillRule="evenodd"
+      //               clipRule="evenodd"
+      //               d="M6.12648 14L5 12.8493L9.74704 8L5 3.15074L6.12648 2L11.3152 7.30047C11.6957 7.6892 11.6957 8.31081 11.3152 8.69954L6.12648 14Z"
+      //               fill="#334155"
+      //             />
+      //           </svg>
+      //         </button>
+      //       </div>
+      //     </div>
+      //     <Footer />
+      //   </div>
     )
   }
 }
