@@ -6,6 +6,7 @@ import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
 import Cookies from 'js-cookie'
 
 import Header from '../Header'
+import EachRestaurantFoodItem from '../EachRestaurantFoodItem'
 
 import Footer from '../Footer'
 
@@ -20,49 +21,13 @@ const apiConstants = {
 class EachRestaurant extends Component {
   state = {
     restaurantData: {},
+    restaurantFoodItems: [],
     apiStatus: 'INITIAL',
   }
 
   componentDidMount() {
-    // this.getRestaurantDetails()
     this.getRestaurantFoodsList()
   }
-
-  //   getRestaurantFoodsList = async () => {
-  //     this.setState({apiStatus: apiConstants.onLoading})
-  //     const jwtToken = Cookies.get('jwt_token')
-
-  //     const options = {
-  //       method: 'GET',
-  //       headers: {
-  //         Authorization: `Bearer ${jwtToken}`,
-  //       },
-  //     }
-  //     const {match} = this.props
-  //     const {params} = match
-  //     const {id} = params
-  //     try {
-  //       const response = await fetch(
-  //         `https://apis.ccbp.in/restaurants-list/${id}`,
-  //         options,
-  //       )
-  //       if (response.ok) {
-  //         const data = await response.json()
-  //         const updatedCarouselsData = data.offers.map(eachItem => ({
-  //           imageUrl: eachItem.image_url,
-  //           id: eachItem.id,
-  //         }))
-  //         this.setState({
-  //           carouselsData: updatedCarouselsData,
-  //           apiStatus: apiConstants.onSuccess,
-  //         })
-  //       } else {
-  //         this.setState({apiStatus: apiConstants.onFailure})
-  //       }
-  //     } catch (error) {
-  //       console.log(error)
-  //     }
-  //   }
 
   getRestaurantFoodsList = async () => {
     this.setState({apiStatus: apiConstants.onLoading})
@@ -93,8 +58,16 @@ class EachRestaurant extends Component {
         imageUrl: data.image_url,
         costForTwo: data.cost_for_two,
       }
+      const updatedRestaurantFoodItems = data.food_items.map(eachItem => ({
+        name: eachItem.name,
+        cost: eachItem.cost,
+        imageUrl: eachItem.image_url,
+        rating: eachItem.rating,
+        id: eachItem.id,
+      }))
       this.setState({
         restaurantData: updatedRestaurantDetails,
+        restaurantFoodItems: updatedRestaurantFoodItems,
         apiStatus: apiConstants.onSuccess,
       })
     } catch (error) {
@@ -132,7 +105,7 @@ class EachRestaurant extends Component {
   }
 
   render() {
-    const {restaurantData} = this.state
+    const {restaurantData, restaurantFoodItems} = this.state
     return (
       <div className="home-container">
         <Header />
@@ -146,16 +119,27 @@ class EachRestaurant extends Component {
             <h1 className="restaurant-name">{restaurantData.name}</h1>
             <p className="restaurant-cuisine">{restaurantData.cuisine}</p>
             <p className="restaurant-location">{restaurantData.location}</p>
-            <div>
+            <div className="rating-reviews-container">
               <div>
-                <span className="restaurant-rating">
-                  {restaurantData.rating}
-                </span>
+                <h2 className="restaurant-rating">{restaurantData.rating}</h2>
+
+                <p className="restaurant-total-ratings">{`${restaurantData.totalReviews}+ Ratings`}</p>
+              </div>
+              <hr className="horizontal-line" />
+              <div>
+                <h2 className="restaurant-two-items">
+                  {restaurantData.costForTwo}
+                </h2>
+                <p className="restaurant-two-items-para">Cost for two</p>
               </div>
             </div>
           </div>
         </div>
-
+        <ul className="unordered-food-items">
+          {restaurantFoodItems.map(eachItem => (
+            <EachRestaurantFoodItem eachContent={eachItem} key={eachItem.id} />
+          ))}
+        </ul>
         <Footer />
       </div>
     )

@@ -254,9 +254,8 @@ class Home extends Component {
             </svg>
           </button>
           <span data-testid="active-page-number" className="pagination-para">
-            {activePage}
+            {activePage} of 4
           </span>{' '}
-          of 4.
           <button
             className="arrow-button"
             type="button"

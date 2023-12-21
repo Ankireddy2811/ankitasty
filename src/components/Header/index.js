@@ -1,7 +1,15 @@
+import Cookies from 'js-cookie'
+import {withRouter} from 'react-router-dom'
+
 import './index.css'
 
-const Header = () => {
-  console.log('hi')
+const Header = props => {
+  const {history} = props
+  const onLogoutButtonClicked = () => {
+    Cookies.remove('jwt_token')
+    history.replace('/login')
+  }
+
   return (
     <div className="header-container">
       <div className="first-unordered-list">
@@ -16,7 +24,11 @@ const Header = () => {
         <li className="home-list-item">Home</li>
         <li className="cart-list-item">Cart</li>
         <li className="home-list-item">
-          <button type="button" className="logout-button">
+          <button
+            type="button"
+            className="logout-button"
+            onClick={onLogoutButtonClicked}
+          >
             Logout
           </button>
         </li>
@@ -25,4 +37,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default withRouter(Header)
