@@ -1,5 +1,5 @@
 .footer-container {
-  width: 100%;
+  width: 1440px;
   height: 424px;
   flex-shrink: 0;
   background: var(--light-blue-gray-900, #0f172a);

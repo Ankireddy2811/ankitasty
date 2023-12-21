@@ -235,6 +235,7 @@ class Home extends Component {
           <button
             className="arrow-button"
             type="button"
+            data-testid="pagination-left-button"
             onClick={this.onLeftArrowClicked}
           >
             <svg
@@ -252,10 +253,14 @@ class Home extends Component {
               />
             </svg>
           </button>
-          <p className="pagination-para">{activePage} of 4</p>
+          <span data-testid="active-page-number" className="pagination-para">
+            {activePage}
+          </span>{' '}
+          of 4.
           <button
             className="arrow-button"
             type="button"
+            data-testid="pagination-right-button"
             onClick={this.onRightArrowClicked}
           >
             <svg

@@ -1,8 +1,11 @@
-.each-food-list-item {
-  display: flex;
+.each-link-item {
+  text-decoration: none;
   width: 30%;
   height: 30vh;
   flex-grow: 1;
+}
+.each-food-list-item {
+  display: flex;
 }
 
 .each-food-image {
@@ -24,7 +27,7 @@
   font-weight: 700;
   letter-spacing: 0.2px;
   height: 14px;
- 
+
   flex-shrink: 0;
 }
 
