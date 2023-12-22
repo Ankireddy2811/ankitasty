@@ -4,42 +4,52 @@ import CartContext from '../../context/CartContext'
 import './index.css'
 
 class EachRestaurantFoodItem extends Component {
-  state = {itemCount: 0, isAddView: false}
-
-  onAddButtonClicked = () => {
-    this.setState(prevState => ({
-      itemCount: prevState.itemCount + 1,
-      isAddView: !prevState.isAddView,
-    }))
-  }
-
-  onIncrement = () => {
-    this.setState(prevState => ({
-      itemCount: prevState.itemCount + 1,
-    }))
-  }
-
-  onDecrement = () => {
-    const {itemCount} = this.state
-    if (itemCount > 1) {
-      this.setState(prevState => ({
-        itemCount: prevState.itemCount - 1,
-      }))
-    } else {
-      this.setState(prevState => ({
-        isAddView: !prevState.isAddView,
-      }))
-    }
-  }
+  state = {quantity: 1, isAddView: false}
 
   render() {
     return (
       <CartContext.Consumer>
         {value => {
-          const {cartList, addCartItem} = value
-          console.log(cartList)
+          const {addCartItem} = value
           const {eachContent} = this.props
-          const {itemCount, isAddView} = this.state
+
+          const {quantity, isAddView} = this.state
+
+          const updateCount = () => {
+            addCartItem({...eachContent, quantity})
+          }
+
+          const onAddButtonClicked = () => {
+            this.setState({isAddView: true}, updateCount)
+          }
+
+          const onDecrement = () => {
+            if (quantity > 1) {
+              this.setState(
+                prevState => ({quantity: prevState.quantity - 1}),
+                updateCount,
+              )
+            } else {
+              this.setState(
+                {
+                  isAddView: false,
+                  quantity: 0,
+                },
+                updateCount,
+              )
+            }
+          }
+
+          const onIncrement = () => {
+            this.setState(
+              prevState => ({quantity: prevState.quantity + 1}),
+              () => {
+                // This callback is executed after the state has been updated
+                updateCount()
+              },
+            )
+          }
+
           return (
             <li className="each-restaruant-food-list-item">
               <img
@@ -61,15 +71,15 @@ class EachRestaurantFoodItem extends Component {
                   <div className="add-sub-button-container">
                     <button
                       type="button"
-                      onClick={this.onDecrement}
+                      onClick={onDecrement}
                       className="alter-buttons"
                     >
                       -
                     </button>
-                    <div className="item-count-text">{itemCount}</div>
+                    <div className="item-count-text">{quantity}</div>
                     <button
                       type="button"
-                      onClick={this.onIncrement}
+                      onClick={onIncrement}
                       className="alter-buttons"
                     >
                       +
@@ -79,7 +89,7 @@ class EachRestaurantFoodItem extends Component {
                   <button
                     className="add-button"
                     type="button"
-                    onClick={this.onAddButtonClicked}
+                    onClick={onAddButtonClicked}
                   >
                     ADD
                   </button>
