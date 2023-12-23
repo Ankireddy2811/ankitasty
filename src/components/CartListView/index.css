@@ -1,0 +1,6 @@
+.cart-list {
+  width: 1110px;
+  flex-shrink: 0;
+  border: 1px solid var(--Main-Hover-Light, rgba(11, 105, 255, 0.1));
+  background: #f9fbfe;
+}

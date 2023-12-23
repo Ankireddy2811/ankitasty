@@ -8,6 +8,7 @@ import ProtectedRoute from './components/ProtectedRoute'
 import Home from './components/Home'
 
 import EachRestaurant from './components/EachRestaurant'
+import Cart from './components/Cart'
 
 import CartContext from './context/CartContext'
 
@@ -37,6 +38,7 @@ class App extends Component {
               path="/restaurant/:id"
               component={EachRestaurant}
             />
+            <ProtectedRoute exact path="/cart" component={Cart} />
           </Switch>
         </CartContext.Provider>
       </BrowserRouter>

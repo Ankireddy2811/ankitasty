@@ -4,7 +4,7 @@ import CartContext from '../../context/CartContext'
 import './index.css'
 
 class EachRestaurantFoodItem extends Component {
-  state = {quantity: 1, isAddView: false}
+  state = {quantity: 0, isAddView: false}
 
   render() {
     return (
@@ -15,19 +15,23 @@ class EachRestaurantFoodItem extends Component {
 
           const {quantity, isAddView} = this.state
 
-          const updateCount = () => {
-            addCartItem({...eachContent, quantity})
+          const updateIncCount = () => {
+            addCartItem({...eachContent, quantity: quantity + 1})
+          }
+
+          const updateDecCount = () => {
+            addCartItem({...eachContent, quantity: quantity - 1})
           }
 
           const onAddButtonClicked = () => {
-            this.setState({isAddView: true}, updateCount)
+            this.setState({isAddView: true, quantity: 1}, updateIncCount)
           }
 
           const onDecrement = () => {
             if (quantity > 1) {
               this.setState(
                 prevState => ({quantity: prevState.quantity - 1}),
-                updateCount,
+                updateDecCount,
               )
             } else {
               this.setState(
@@ -35,7 +39,7 @@ class EachRestaurantFoodItem extends Component {
                   isAddView: false,
                   quantity: 0,
                 },
-                updateCount,
+                updateDecCount,
               )
             }
           }
@@ -43,10 +47,7 @@ class EachRestaurantFoodItem extends Component {
           const onIncrement = () => {
             this.setState(
               prevState => ({quantity: prevState.quantity + 1}),
-              () => {
-                // This callback is executed after the state has been updated
-                updateCount()
-              },
+              updateIncCount,
             )
           }
 

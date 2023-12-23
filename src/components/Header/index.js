@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie'
-import {withRouter} from 'react-router-dom'
+import {withRouter, Link} from 'react-router-dom'
 
 import './index.css'
 
@@ -21,8 +21,12 @@ const Header = props => {
         <p className="header-first-para">Tasty Kitchens</p>
       </div>
       <ul className="second-unordered-list">
-        <li className="home-list-item">Home</li>
-        <li className="cart-list-item">Cart</li>
+        <Link to="/" className="home-list-item">
+          Home
+        </Link>
+        <Link to="/cart" className="cart-list-item">
+          Cart
+        </Link>
         <li className="home-list-item">
           <button
             type="button"
