@@ -4,3 +4,111 @@
   border: 1px solid var(--Main-Hover-Light, rgba(11, 105, 255, 0.1));
   background: #f9fbfe;
 }
+.header-cart-item {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+@media screen and (min-width: 768px) {
+  .header-cart-item {
+    margin-bottom: 32px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .header-cart-item {
+    padding-left: 36px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    padding-right: 48px;
+  }
+}
+
+.header-cart-item-details-container {
+  margin-left: 16px;
+}
+
+@media screen and (min-width: 768px) {
+  .header-cart-item-details-container {
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .header-cart-product-title-brand-container {
+    width: 290px;
+    margin-left: 30px;
+  }
+}
+
+.header-cart-product-title {
+  color: #183b56;
+  font-family: DM Sans;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 120% */
+  letter-spacing: 0.2px;
+}
+
+@media screen and (min-width: 768px) {
+  .header-cart-product-title {
+    font-size: 16px;
+  }
+}
+
+.header-cart-quantity-container {
+  display: flex;
+  align-items: center;
+}
+
+
+
+.header-cart-quantity {
+  color: var(--Light-blue-gray-600, #475569);
+  font-family: DM Sans;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 150% */
+}
+
+@media screen and (min-width: 768px) {
+  .header-cart-quantity {
+    font-size: 18px;
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+  .header-cart-quantity-container {
+    width: 70px;
+  }
+}
+
+.header-total-price-container {
+  display: flex;
+  align-items: center;
+}
+
+.header-cart-total-price {
+  color: var(--Light-blue-gray-600, #475569);
+  text-align: right;
+  font-family: DM Sans;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 120% */
+  letter-spacing: 0.2px;
+}
+
+@media screen and (min-width: 768px) {
+  .header-cart-total-price {
+    font-size: 18px;
+  }
+  .header-total-price-container {
+    width: 105px;
+  }
+}
