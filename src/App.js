@@ -15,7 +15,7 @@ import CartContext from './context/CartContext'
 import './App.css'
 
 class App extends Component {
-  state = {cartList: []}
+  state = {cartList: JSON.parse(localStorage.getItem('cart_list'))}
 
   addCartItem = newCartItem => {
     this.setState(prevState => {
@@ -27,9 +27,15 @@ class App extends Component {
         // Item already exists in the cart, update its quantity
         const updatedCartList = [...prevState.cartList]
         updatedCartList[existingItemIndex].quantity = newCartItem.quantity
+        localStorage.setItem('cart_list', JSON.stringify(updatedCartList))
         return {cartList: updatedCartList}
       }
+
       // Item is not in the cart, add it
+      localStorage.setItem(
+        'cart_list',
+        JSON.stringify([...prevState.cartList, newCartItem]),
+      )
       return {cartList: [...prevState.cartList, newCartItem]}
     })
   }
