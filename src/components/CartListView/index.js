@@ -7,6 +7,8 @@ const CartListView = () => (
   <CartContext.Consumer>
     {value => {
       const {cartList, deleteCartItem} = value
+      console.log(cartList)
+
       const calculateTotalPrice = () => {
         let totalPriceValue = 0
         cartList.forEach(eachItem => {
@@ -44,7 +46,7 @@ const CartListView = () => (
             className="line"
           />
           <div className="total-price-container">
-            <h2 className="order-total">Order Total</h2>
+            <h2 className="order-total">Order Total :</h2>
             <h2 className="total-price">₹ {calculateTotalPrice()}</h2>
           </div>
           <button className="place-order-btn" type="button">

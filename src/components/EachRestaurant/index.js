@@ -10,6 +10,8 @@ import EachRestaurantFoodItem from '../EachRestaurantFoodItem'
 
 import Footer from '../Footer'
 
+import CartContext from '../../context/CartContext'
+
 import './index.css'
 
 const apiConstants = {
@@ -107,41 +109,68 @@ class EachRestaurant extends Component {
   render() {
     const {restaurantData, restaurantFoodItems} = this.state
     return (
-      <div className="home-container">
-        <Header />
-        <div className="restaruant-details-container">
-          <img
-            src={restaurantData.imageUrl}
-            alt={restaurantData.name}
-            className="main-image"
-          />
-          <div className="restaurant-each-detail-container">
-            <h1 className="restaurant-name">{restaurantData.name}</h1>
-            <p className="restaurant-cuisine">{restaurantData.cuisine}</p>
-            <p className="restaurant-location">{restaurantData.location}</p>
-            <div className="rating-reviews-container">
-              <div>
-                <h2 className="restaurant-rating">{restaurantData.rating}</h2>
+      <CartContext.Consumer>
+        {value => {
+          const {cartList} = value
 
-                <p className="restaurant-total-ratings">{`${restaurantData.totalReviews}+ Ratings`}</p>
+          const geteachResturantItem = eachItem => {
+            let foundCartItem = null
+
+            cartList.forEach(eachCartItem => {
+              if (eachCartItem.id === eachItem.id) {
+                foundCartItem = eachCartItem
+              }
+            })
+
+            return foundCartItem === null ? eachItem : foundCartItem
+          }
+
+          return (
+            <div className="home-container">
+              <Header />
+              <div className="restaruant-details-container">
+                <img
+                  src={restaurantData.imageUrl}
+                  alt={restaurantData.name}
+                  className="main-image"
+                />
+                <div className="restaurant-each-detail-container">
+                  <h1 className="restaurant-name">{restaurantData.name}</h1>
+                  <p className="restaurant-cuisine">{restaurantData.cuisine}</p>
+                  <p className="restaurant-location">
+                    {restaurantData.location}
+                  </p>
+                  <div className="rating-reviews-container">
+                    <div>
+                      <h2 className="restaurant-rating">
+                        {restaurantData.rating}
+                      </h2>
+
+                      <p className="restaurant-total-ratings">{`${restaurantData.totalReviews}+ Ratings`}</p>
+                    </div>
+                    <hr className="horizontal-line" />
+                    <div>
+                      <h2 className="restaurant-two-items">
+                        {restaurantData.costForTwo}
+                      </h2>
+                      <p className="restaurant-two-items-para">Cost for two</p>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <hr className="horizontal-line" />
-              <div>
-                <h2 className="restaurant-two-items">
-                  {restaurantData.costForTwo}
-                </h2>
-                <p className="restaurant-two-items-para">Cost for two</p>
-              </div>
+              <ul className="unordered-food-items">
+                {restaurantFoodItems.map(eachItem => (
+                  <EachRestaurantFoodItem
+                    eachContent={geteachResturantItem(eachItem)}
+                    key={eachItem.id}
+                  />
+                ))}
+              </ul>
+              <Footer />
             </div>
-          </div>
-        </div>
-        <ul className="unordered-food-items">
-          {restaurantFoodItems.map(eachItem => (
-            <EachRestaurantFoodItem eachContent={eachItem} key={eachItem.id} />
-          ))}
-        </ul>
-        <Footer />
-      </div>
+          )
+        }}
+      </CartContext.Consumer>
     )
   }
 }

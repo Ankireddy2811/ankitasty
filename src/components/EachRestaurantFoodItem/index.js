@@ -4,7 +4,13 @@ import CartContext from '../../context/CartContext'
 import './index.css'
 
 class EachRestaurantFoodItem extends Component {
-  state = {quantity: 0, isAddView: false}
+  constructor(props) {
+    super(props)
+    const {eachContent} = this.props
+    this.state = {
+      quantity: eachContent.quantity > 0 ? eachContent.quantity : 0,
+    }
+  }
 
   render() {
     return (
@@ -13,7 +19,7 @@ class EachRestaurantFoodItem extends Component {
           const {addCartItem} = value
           const {eachContent} = this.props
 
-          const {quantity, isAddView} = this.state
+          const {quantity} = this.state
 
           const updateIncCount = () => {
             addCartItem({...eachContent, quantity: quantity + 1})
@@ -24,7 +30,7 @@ class EachRestaurantFoodItem extends Component {
           }
 
           const onAddButtonClicked = () => {
-            this.setState({isAddView: true, quantity: 1}, updateIncCount)
+            this.setState({quantity: 1}, updateIncCount)
           }
 
           const onDecrement = () => {
@@ -36,7 +42,6 @@ class EachRestaurantFoodItem extends Component {
             } else {
               this.setState(
                 {
-                  isAddView: false,
                   quantity: 0,
                 },
                 updateDecCount,
@@ -68,7 +73,7 @@ class EachRestaurantFoodItem extends Component {
                   />
                   <h2 className="item-rating">{eachContent.rating}</h2>
                 </span>
-                {isAddView ? (
+                {quantity > 0 ? (
                   <div className="add-sub-button-container">
                     <button
                       type="button"
