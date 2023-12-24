@@ -52,6 +52,11 @@ class App extends Component {
     this.setState({cartList: filteredCartList})
   }
 
+  clearAllCartItems = () => {
+    localStorage.setItem('cart_list', JSON.stringify([]))
+    this.setState({cartList:[]})
+  }
+
   render() {
     const {cartList} = this.state
 
@@ -62,6 +67,7 @@ class App extends Component {
             cartList,
             addCartItem: this.addCartItem,
             deleteCartItem: this.deleteCartItem,
+            clearAllCartItems: this.clearAllCartItems,
           }}
         >
           <Switch>
