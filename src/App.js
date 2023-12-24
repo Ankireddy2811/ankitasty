@@ -43,12 +43,13 @@ class App extends Component {
   deleteCartItem = id => {
     const {cartList} = this.state
     const filteredCartList = cartList.filter(eachItem => eachItem.id !== id)
+    localStorage.setItem('cart_list', JSON.stringify(filteredCartList))
     this.setState({cartList: filteredCartList})
   }
 
   render() {
     const {cartList} = this.state
-    console.log(cartList)
+
     return (
       <BrowserRouter>
         <CartContext.Provider

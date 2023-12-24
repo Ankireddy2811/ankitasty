@@ -3,17 +3,19 @@
   flex-shrink: 0;
   border: 1px solid var(--Main-Hover-Light, rgba(11, 105, 255, 0.1));
   background: #f9fbfe;
+  padding-bottom: 56px;
+  display: flex;
+  flex-direction: column;
 }
 .header-cart-item {
   display: flex;
   align-items: center;
-  background-color: #ffffff;
   padding: 16px;
-  margin-bottom: 12px;
+  margin-bottom: 6px;
 }
 @media screen and (min-width: 768px) {
   .header-cart-item {
-    margin-bottom: 32px;
+    margin-bottom: 10px;
   }
 }
 
@@ -21,7 +23,7 @@
   .header-cart-item {
     padding-left: 36px;
     padding-top: 24px;
-    padding-bottom: 24px;
+
     padding-right: 48px;
   }
 }
@@ -66,8 +68,6 @@
   align-items: center;
 }
 
-
-
 .header-cart-quantity {
   color: var(--Light-blue-gray-600, #475569);
   font-family: DM Sans;
@@ -109,6 +109,58 @@
     font-size: 18px;
   }
   .header-total-price-container {
-    width: 80px;
+    width: 60px;
   }
+}
+
+.line {
+  width: 1000px;
+  height: 1px;
+  margin-left: 40px;
+}
+
+.place-order-btn {
+  display: flex;
+  padding: 8px 16px;
+  flex-direction: column;
+  align-items: center;
+  border: none;
+  border-radius: 8px;
+  background: #f7931e;
+  color: var(--Light-base-white, #fff);
+  font-family: DM Sans;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px; /* 133.333% */
+  cursor: pointer;
+  outline: none;
+  align-self: flex-end;
+  margin-right: 30px;
+}
+.total-price-container {
+  margin-left: 40px;
+  margin-right: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.order-total {
+  color: var(--Basic-900, #3e4c59);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 32px; /* 133.333% */
+}
+.total-price {
+  color: var(--Basic-900, #3e4c59);
+  text-align: right;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: DM Sans;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 32px; /* 133.333% */
 }

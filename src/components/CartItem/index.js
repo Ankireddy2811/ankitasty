@@ -6,8 +6,7 @@ class CartItem extends Component {
   constructor(props) {
     super(props)
     const {cartItemDetails} = this.props
-    const {id, quantity, cost} = cartItemDetails
-    console.log(id)
+    const {quantity, cost} = cartItemDetails
     this.state = {quantity, cost}
   }
 
@@ -64,7 +63,7 @@ class CartItem extends Component {
             </button>
           </div>
           <div className="total-price-delete-container">
-            <p className="cart-total-price">Rs {this.calculateCost()}/-</p>
+            <p className="cart-total-price">₹ {this.calculateCost()}/-</p>
           </div>
         </div>
       </li>

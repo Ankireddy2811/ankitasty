@@ -7,6 +7,14 @@ const CartListView = () => (
   <CartContext.Consumer>
     {value => {
       const {cartList, deleteCartItem} = value
+      const calculateTotalPrice = () => {
+        let totalPriceValue = 0
+        cartList.forEach(eachItem => {
+          totalPriceValue += eachItem.cost * eachItem.quantity
+        })
+        return totalPriceValue
+      }
+
       return (
         <ul className="cart-list">
           <li className="header-cart-item">
@@ -30,6 +38,18 @@ const CartListView = () => (
               deleteCartItem={deleteCartItem}
             />
           ))}
+          <img
+            src="https://res.cloudinary.com/dcqt2hg87/image/upload/v1703411535/Line_5_fofa8z.png"
+            alt="line"
+            className="line"
+          />
+          <div className="total-price-container">
+            <h2 className="order-total">Order Total</h2>
+            <h2 className="total-price">₹ {calculateTotalPrice()}</h2>
+          </div>
+          <button className="place-order-btn" type="button">
+            Place Order
+          </button>
         </ul>
       )
     }}
