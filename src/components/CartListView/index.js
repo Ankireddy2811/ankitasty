@@ -1,9 +1,10 @@
+import {withRouter} from 'react-router-dom'
 import CartItem from '../CartItem'
 import CartContext from '../../context/CartContext'
 
 import './index.css'
 
-const CartListView = () => (
+const CartListView = props => (
   <CartContext.Consumer>
     {value => {
       const {cartList, deleteCartItem} = value
@@ -15,6 +16,11 @@ const CartListView = () => (
           totalPriceValue += eachItem.cost * eachItem.quantity
         })
         return totalPriceValue
+      }
+
+      const onPlaceOrderButton = () => {
+        const {history} = props
+        history.replace('/payment')
       }
 
       return (
@@ -49,7 +55,11 @@ const CartListView = () => (
             <h2 className="order-total">Order Total :</h2>
             <h2 className="total-price">₹ {calculateTotalPrice()}</h2>
           </div>
-          <button className="place-order-btn" type="button">
+          <button
+            className="place-order-btn"
+            type="button"
+            onClick={onPlaceOrderButton}
+          >
             Place Order
           </button>
         </ul>
@@ -58,4 +68,4 @@ const CartListView = () => (
   </CartContext.Consumer>
 )
 
-export default CartListView
+export default withRouter(CartListView)
