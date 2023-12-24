@@ -5,6 +5,7 @@ import './index.css'
 const Payment = props => {
   const onHomePageButton = () => {
     const {history} = props
+    localStorage.setItem('cart_list', JSON.stringify([]))
     history.replace('/')
   }
 

@@ -81,7 +81,7 @@ class CarouselData extends Component {
       <div className="carousel-container">
         <Slider {...settings}>
           {carouselsData.map(eachItem => (
-            <div className="each-carousel-slide">
+            <div className="each-carousel-slide" key={eachItem.id}>
               <img
                 src={eachItem.imageUrl}
                 alt={eachItem.id}

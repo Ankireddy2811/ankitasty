@@ -24,7 +24,8 @@ class EachRestaurant extends Component {
   state = {
     restaurantData: {},
     restaurantFoodItems: [],
-    apiStatus: 'INITIAL',
+    apiRestaurantFoodListStatus: 'INITIAL',
+    apiRestaurantDetailsStatus: 'INITIAL',
   }
 
   componentDidMount() {
@@ -32,7 +33,7 @@ class EachRestaurant extends Component {
   }
 
   getRestaurantFoodsList = async () => {
-    this.setState({apiStatus: apiConstants.onLoading})
+    this.setState({apiRestaurantFoodListStatus: apiConstants.onLoading})
     const jwtToken = Cookies.get('jwt_token')
 
     const options = {
@@ -70,44 +71,52 @@ class EachRestaurant extends Component {
       this.setState({
         restaurantData: updatedRestaurantDetails,
         restaurantFoodItems: updatedRestaurantFoodItems,
-        apiStatus: apiConstants.onSuccess,
+        apiRestaurantFoodListStatus: apiConstants.onSuccess,
+        apiRestaurantDetailsStatus: apiConstants.onSuccess,
       })
     } catch (error) {
       console.log(error)
     }
   }
 
-  getLoadingView = () => (
-    <div className="loader-container">
-      <Loader type="ThreeDots" width={80} height={80} color="#F7931E" />
-    </div>
-  )
+  getRestaurantDetailsSuccessView = () => {
+    const {restaurantData} = this.state
+    return (
+      <>
+        <img
+          src={restaurantData.imageUrl}
+          alt={restaurantData.name}
+          className="main-image"
+        />
+        <div className="restaurant-each-detail-container">
+          <h1 className="restaurant-name">{restaurantData.name}</h1>
+          <p className="restaurant-cuisine">{restaurantData.cuisine}</p>
+          <p className="restaurant-location">{restaurantData.location}</p>
+          <div className="rating-reviews-container">
+            <div>
+              <h2 className="restaurant-rating">{restaurantData.rating}</h2>
 
-  //   getSuccessView = () => {
-  //     const {foodListsData} = this.state
-  //     return (
-  //       <ul className="unordered-food-list">
-  //         {foodListsData.map(eachItem => (
-  //           <EachFoodItem key={eachItem.id} eachContent={eachItem} />
-  //         ))}
-  //       </ul>
-  //     )
-  //   }
-
-  onRenderList = () => {
-    const {apiStatus} = this.state
-    switch (apiStatus) {
-      case apiConstants.onSuccess:
-        return this.getSuccessView()
-      case apiConstants.onLoading:
-        return this.getLoadingView()
-      default:
-        return null
-    }
+              <p className="restaurant-total-ratings">{`${restaurantData.totalReviews}+ Ratings`}</p>
+            </div>
+            <hr className="horizontal-line" />
+            <div>
+              <h2 className="restaurant-two-items">
+                {restaurantData.costForTwo}
+              </h2>
+              <p className="restaurant-two-items-para">Cost for two</p>
+            </div>
+          </div>
+        </div>
+      </>
+    )
   }
 
   render() {
-    const {restaurantData, restaurantFoodItems} = this.state
+    const {
+      restaurantFoodItems,
+      apiRestaurantFoodListStatus,
+      apiRestaurantDetailsStatus,
+    } = this.state
     return (
       <CartContext.Consumer>
         {value => {
@@ -125,47 +134,34 @@ class EachRestaurant extends Component {
             return foundCartItem === null ? eachItem : foundCartItem
           }
 
+          const getLoadingView = () => (
+            <div className="loader-container">
+              <Loader type="ThreeDots" width={80} height={80} color="#F7931E" />
+            </div>
+          )
+
+          const getRestaurantFoodSuccessView = () => (
+            <ul className="unordered-food-items">
+              {restaurantFoodItems.map(eachItem => (
+                <EachRestaurantFoodItem
+                  eachContent={geteachResturantItem(eachItem)}
+                  key={eachItem.id}
+                />
+              ))}
+            </ul>
+          )
+
           return (
             <div className="home-container">
               <Header />
               <div className="restaruant-details-container">
-                <img
-                  src={restaurantData.imageUrl}
-                  alt={restaurantData.name}
-                  className="main-image"
-                />
-                <div className="restaurant-each-detail-container">
-                  <h1 className="restaurant-name">{restaurantData.name}</h1>
-                  <p className="restaurant-cuisine">{restaurantData.cuisine}</p>
-                  <p className="restaurant-location">
-                    {restaurantData.location}
-                  </p>
-                  <div className="rating-reviews-container">
-                    <div>
-                      <h2 className="restaurant-rating">
-                        {restaurantData.rating}
-                      </h2>
-
-                      <p className="restaurant-total-ratings">{`${restaurantData.totalReviews}+ Ratings`}</p>
-                    </div>
-                    <hr className="horizontal-line" />
-                    <div>
-                      <h2 className="restaurant-two-items">
-                        {restaurantData.costForTwo}
-                      </h2>
-                      <p className="restaurant-two-items-para">Cost for two</p>
-                    </div>
-                  </div>
-                </div>
+                {apiRestaurantDetailsStatus === 'SUCCESS'
+                  ? this.getRestaurantDetailsSuccessView()
+                  : getLoadingView()}
               </div>
-              <ul className="unordered-food-items">
-                {restaurantFoodItems.map(eachItem => (
-                  <EachRestaurantFoodItem
-                    eachContent={geteachResturantItem(eachItem)}
-                    key={eachItem.id}
-                  />
-                ))}
-              </ul>
+              {apiRestaurantFoodListStatus === 'SUCCESS'
+                ? getRestaurantFoodSuccessView()
+                : getLoadingView()}
               <Footer />
             </div>
           )

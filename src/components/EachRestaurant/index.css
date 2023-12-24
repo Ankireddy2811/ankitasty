@@ -9,6 +9,7 @@
   padding-bottom: 32px;
   display: flex;
   align-items: center;
+  
 }
 
 .main-image {
@@ -60,6 +61,7 @@
   align-items: center;
   flex-wrap: wrap;
   list-style: none;
+  height:1400px;
   padding-left: 165px;
   padding-top: 32px;
 }
