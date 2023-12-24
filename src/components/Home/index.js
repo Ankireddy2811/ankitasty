@@ -3,18 +3,14 @@ import {Component} from 'react'
 import {BsFilterLeft} from 'react-icons/bs'
 
 import Loader from 'react-loader-spinner'
-import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
-
-import Slider from 'react-slick'
-
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
 
 import Cookies from 'js-cookie'
 
 import Header from '../Header'
 
 import Footer from '../Footer'
+
+import CarouselData from '../CarouselData'
 
 import EachFoodItem from '../EachFoodItem'
 
@@ -41,7 +37,6 @@ const apiConstants = {
 
 class Home extends Component {
   state = {
-    carouselsData: [],
     foodListsData: [],
     activePage: 1,
     totalItems: '',
@@ -50,41 +45,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    this.getCarouselData()
     this.getFoodsList()
-  }
-
-  getCarouselData = async () => {
-    this.setState({apiStatus: apiConstants.onLoading})
-    const jwtToken = Cookies.get('jwt_token')
-    console.log(jwtToken)
-    const options = {
-      headers: {
-        Authorization: `Bearer ${jwtToken}`,
-      },
-      method: 'GET',
-    }
-    try {
-      const response = await fetch(
-        'https://apis.ccbp.in/restaurants-list/offers',
-        options,
-      )
-      if (response.ok) {
-        const data = await response.json()
-        const updatedCarouselsData = data.offers.map(eachItem => ({
-          imageUrl: eachItem.image_url,
-          id: eachItem.id,
-        }))
-        this.setState({
-          carouselsData: updatedCarouselsData,
-          apiStatus: apiConstants.onSuccess,
-        })
-      } else {
-        this.setState({apiStatus: apiConstants.onFailure})
-      }
-    } catch (error) {
-      console.log(error)
-    }
   }
 
   getFoodsList = async () => {
@@ -155,7 +116,7 @@ class Home extends Component {
     </div>
   )
 
-  getSuccessView = () => {
+  getSuccessFoodListView = () => {
     const {foodListsData} = this.state
     return (
       <ul className="unordered-food-list">
@@ -166,11 +127,11 @@ class Home extends Component {
     )
   }
 
-  onRenderList = () => {
+  onRenderFoodList = () => {
     const {apiStatus} = this.state
     switch (apiStatus) {
       case apiConstants.onSuccess:
-        return this.getSuccessView()
+        return this.getSuccessFoodListView()
       case apiConstants.onLoading:
         return this.getLoadingView()
       default:
@@ -179,33 +140,12 @@ class Home extends Component {
   }
 
   render() {
-    const {carouselsData, selectedSortByValue, activePage} = this.state
-    const settings = {
-      dots: true,
-      infinite: true,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      autoplay: true,
-      speed: 1000,
-      autoplaySpeed: 5000,
-      cssEase: 'linear',
-    }
+    const {selectedSortByValue, activePage} = this.state
+
     return (
       <div className="home-container">
         <Header />
-        <div className="carousel-container">
-          <Slider {...settings}>
-            {carouselsData.map(eachItem => (
-              <div className="each-carousel-slide">
-                <img
-                  src={eachItem.imageUrl}
-                  alt={eachItem.id}
-                  className="each-carousel-image"
-                />
-              </div>
-            ))}
-          </Slider>
-        </div>
+        <CarouselData />
         <div className="popular-restaruants">
           <h1 className="popular-heading">Popular Restaurants</h1>
           <div className="filter-container">
@@ -222,15 +162,13 @@ class Home extends Component {
                 onChange={this.onChangeRatingOption}
               >
                 {sortByOptions.map(eachItem => (
-                  <option value={eachItem.value}>
-                    Sort by {eachItem.displayText}
-                  </option>
+                  <option value={eachItem.value}>{eachItem.displayText}</option>
                 ))}
               </select>
             </div>
           </div>
         </div>
-        {this.onRenderList()}
+        {this.onRenderFoodList()}
         <div className="pagination-container">
           <button
             className="arrow-button"
@@ -238,20 +176,10 @@ class Home extends Component {
             data-testid="pagination-left-button"
             onClick={this.onLeftArrowClicked}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-            >
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M9.87352 2L11 3.15074L6.25296 8L11 12.8493L9.87352 14L4.68479 8.69953C4.30425 8.3108 4.30425 7.68919 4.68479 7.30046L9.87352 2Z"
-                fill="#334155"
-              />
-            </svg>
+            <img
+              src="https://res.cloudinary.com/dcqt2hg87/image/upload/v1703424653/Chevron_Left_-_16px_ilu29s.png"
+              alt="left-arrow"
+            />
           </button>
           <span data-testid="active-page-number" className="pagination-para">
             {activePage} of 4
@@ -262,20 +190,10 @@ class Home extends Component {
             data-testid="pagination-right-button"
             onClick={this.onRightArrowClicked}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-            >
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M6.12648 14L5 12.8493L9.74704 8L5 3.15074L6.12648 2L11.3152 7.30047C11.6957 7.6892 11.6957 8.31081 11.3152 8.69954L6.12648 14Z"
-                fill="#334155"
-              />
-            </svg>
+            <img
+              src="https://res.cloudinary.com/dcqt2hg87/image/upload/v1703424756/Chevron_Right_-_16px_ucpizv.png"
+              alt="right-arrow"
+            />
           </button>
         </div>
         <Footer />
