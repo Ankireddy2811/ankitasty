@@ -40,7 +40,7 @@
 
 @media screen and (min-width: 768px) {
   .header-cart-product-title-brand-container {
-    width: 290px;
+    width: 330px;
     margin-left: 30px;
   }
 }
@@ -84,7 +84,7 @@
     margin-right: 16px;
   }
   .header-cart-quantity-container {
-    width: 70px;
+    width: 90px;
   }
 }
 
@@ -109,6 +109,6 @@
     font-size: 18px;
   }
   .header-total-price-container {
-    width: 105px;
+    width: 80px;
   }
 }

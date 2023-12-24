@@ -206,7 +206,7 @@ class Home extends Component {
             ))}
           </Slider>
         </div>
-        <div className="popular-restarents">
+        <div className="popular-restaruants">
           <h1 className="popular-heading">Popular Restaurants</h1>
           <div className="filter-container">
             <p className="popular-para">
