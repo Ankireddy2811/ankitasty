@@ -26,7 +26,13 @@
 
 .each-image {
   margin: 10px;
+  width: 48px;
+  height: 48px;
 }
+ .footer-logo{
+      width: 53px;
+      height: 43px;
+  }
 
 .footer-heading {
   color: #fff;
@@ -57,4 +63,32 @@
 
 .pin-image {
   border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+    width: 360px;
+    height: 256px;
+    flex-shrink: 0;
+    background: #0f172a;
+  }
+  .footer-heading {
+    font-size: 20px;
+  }
+  .footer-para {
+    font-size: 14px;
+    width: 280px;
+    height: 48px;
+  }
+  .each-image {
+    width: 24px;
+    height: 24px;
+  }
+  .pin-image{
+      border-radius: 5px;
+  }
+  .footer-logo{
+      width: 42px;
+      height: 32px;
+  }
 }

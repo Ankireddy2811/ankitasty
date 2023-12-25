@@ -13,11 +13,14 @@ const Header = props => {
   return (
     <div className="header-container">
       <div className="first-unordered-list">
-        <img
-          src="https://res.cloudinary.com/dcqt2hg87/image/upload/v1695573609/Frame_274_h1px52.jpg"
-          alt="logo"
-          className="header-logo-image"
-        />
+        <Link to="/">
+          <img
+            src="https://res.cloudinary.com/dcqt2hg87/image/upload/v1695573609/Frame_274_h1px52.jpg"
+            alt="logo"
+            className="header-logo-image"
+          />
+        </Link>
+
         <p className="header-first-para">Tasty Kitchens</p>
       </div>
       <ul className="second-unordered-list">

@@ -62,3 +62,21 @@
   font-weight: 400;
   line-height: normal;
 }
+
+@media (max-width:768px){
+  .each-link-item {
+  width: 90%;
+  height: 30vh;
+  flex-grow: 1;
+}
+.each-food-list-item {
+  display: flex;
+}
+
+.each-food-image {
+  width: 160px;
+  height: 100px;
+  flex-shrink: 0;
+  border-radius: 8px;
+}
+}

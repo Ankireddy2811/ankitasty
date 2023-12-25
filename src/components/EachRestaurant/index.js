@@ -152,7 +152,7 @@ class EachRestaurant extends Component {
           )
 
           return (
-            <div className="home-container">
+            <div className="each-restaruant-container">
               <Header />
               <div className="restaruant-details-container">
                 {apiRestaurantDetailsStatus === 'SUCCESS'

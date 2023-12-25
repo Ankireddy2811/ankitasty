@@ -84,3 +84,12 @@
   cursor: pointer;
   outline: none;
 }
+
+@media (max-width: 768px) {
+  .header-container {
+    width: 360px;
+    height: 64px;
+    flex-shrink: 0;
+    background: red;
+  }
+}

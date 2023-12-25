@@ -54,7 +54,7 @@ class App extends Component {
 
   clearAllCartItems = () => {
     localStorage.setItem('cart_list', JSON.stringify([]))
-    this.setState({cartList:[]})
+    this.setState({cartList: []})
   }
 
   render() {

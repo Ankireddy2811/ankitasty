@@ -16,7 +16,7 @@ class EachRestaurantFoodItem extends Component {
     return (
       <CartContext.Consumer>
         {value => {
-          const {addCartItem} = value
+          const {addCartItem, deleteCartItem} = value
           const {eachContent} = this.props
 
           const {quantity} = this.state
@@ -26,7 +26,11 @@ class EachRestaurantFoodItem extends Component {
           }
 
           const updateDecCount = () => {
-            addCartItem({...eachContent, quantity: quantity - 1})
+            if (quantity <= 1) {
+              deleteCartItem(eachContent.id)
+            } else {
+              addCartItem({...eachContent, quantity: quantity - 1})
+            }
           }
 
           const onAddButtonClicked = () => {
