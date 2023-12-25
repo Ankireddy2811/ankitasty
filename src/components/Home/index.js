@@ -119,7 +119,7 @@ class Home extends Component {
   getSuccessFoodListView = () => {
     const {foodListsData} = this.state
     return (
-      <ul className="unordered-food-list">
+      <ul className="unordered-food-lists">
         {foodListsData.map(eachItem => (
           <EachFoodItem key={eachItem.id} eachContent={eachItem} />
         ))}

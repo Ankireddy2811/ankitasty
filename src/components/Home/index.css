@@ -1,25 +1,17 @@
 .home-container {
   display: flex;
-  width: 1440px;
-  padding: 2px 0px 64px 0px;
   flex-direction: column;
   align-items: center;
+  width: 1440px;
+  padding: 2px 0px 0px 0px;
   gap: 48px;
   background: #fff;
-  padding-bottom: 0px;
-}
-.carousel-container {
-  width: 90%;
-  margin-bottom: 30px;
-  align-self: center;
-}
-
-.each-carousel-image {
-  width: 100%;
 }
 
 .popular-restaruants {
   width: 90%;
+  display: flex;
+  flex-direction: column;
   align-self: center;
 }
 
@@ -40,6 +32,7 @@
   font-style: normal;
   font-weight: 500;
   line-height: 24px; /* 150% */
+  
 }
 
 .filter-container {
@@ -68,10 +61,10 @@
   justify-content: center;
 }
 
-.unordered-food-list {
+.unordered-food-lists {
   list-style: none;
   width: 100%;
-  height: 500px;
+
   flex-wrap: wrap;
   display: flex;
   align-items: center;
@@ -145,21 +138,44 @@
 
 @media (max-width: 768px) {
   .home-container {
-    width: 360px;
-    height: 1892px;
+    width: 390px;
     background: #fff;
-    padding: 2px 0px 64px 0px;
+    padding: 0px 0px 0px 0px;
     flex-direction: column;
     align-items: center;
     gap: 18px;
-    padding-bottom: 0px;
   }
-  .unordered-food-list {
-    width:360px;
+  .popular-restaruants {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    flex-grow:1;
     padding-left: 24px;
-    background-color: red;
+  }
+
+  .popular-heading {
+    font-size: 24px;
+    line-height: 12px;
+  }
+
+  .popular-para {
+    font-size: 12px;
+    width: 312px;
+    height: 48px;
+    margin-top: 22px;
+  }
+
+  .filter-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .unordered-food-lists {
+    width: 100%;
+    flex-direction: column;
+    flex-grow: 0;
+    padding-left: 10px;
+    flex-shrink: 0;
   }
 }

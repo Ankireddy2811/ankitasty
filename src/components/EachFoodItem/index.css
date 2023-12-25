@@ -27,7 +27,6 @@
   font-weight: 700;
   letter-spacing: 0.2px;
   height: 14px;
-
   flex-shrink: 0;
 }
 
@@ -39,6 +38,7 @@
   font-weight: 400;
   width: 174px;
   height: 14px;
+  margin-top: 0px;
 }
 .rating-container {
   display: flex;
@@ -63,20 +63,24 @@
   line-height: normal;
 }
 
-@media (max-width:768px){
-  .each-link-item {
-  width: 90%;
-  height: 30vh;
-  flex-grow: 1;
-}
-.each-food-list-item {
-  display: flex;
-}
 
-.each-food-image {
-  width: 160px;
-  height: 100px;
-  flex-shrink: 0;
-  border-radius: 8px;
-}
+
+@media (max-width: 768px) {
+  .each-link-item {
+    text-decoration: none;
+    width: 95%;
+    height: 20vh;
+   
+  }
+  
+ .each-food-heading {
+    font-size: 12px;
+    height: 20px;
+    
+  }
+  .each-food-para {
+   font-size: 12px;
+   height: 8px;
+  
+  }
 }

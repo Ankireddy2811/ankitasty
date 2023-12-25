@@ -10,6 +10,8 @@ import 'slick-carousel/slick/slick-theme.css'
 
 import Cookies from 'js-cookie'
 
+import './index.css'
+
 const apiConstants = {
   onSuccess: 'SUCCESS',
   onLoading: 'LOADING',
