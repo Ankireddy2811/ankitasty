@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom'
 import CartContext from '../../context/CartContext'
 import Header from '../Header'
 
@@ -24,13 +25,15 @@ const Payment = props => (
             <p className="payment-para">
               Thank you for ordering Your payment is successfully completed.
             </p>
-            <button
-              type="button"
-              className="home-page-btn"
-              onClick={onHomePageButton}
-            >
-              Go To Home Page
-            </button>
+            <Link to="/" className="link-not-found">
+              <button
+                type="button"
+                className="home-page-btn"
+                onClick={onHomePageButton}
+              >
+                Go To Home Page
+              </button>
+            </Link>
           </div>
         </div>
       )

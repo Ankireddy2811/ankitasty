@@ -1,3 +1,9 @@
+import {
+  FaPinterestSquare,
+  FaInstagram,
+  FaTwitter,
+  FaFacebookSquare,
+} from 'react-icons/fa'
 import './index.css'
 
 const Footer = () => (
@@ -14,26 +20,27 @@ const Footer = () => (
       The only thing we are serious about is food. Contact us on
     </p>
     <div className="icons-container">
-      <img
-        src="https://res.cloudinary.com/dcqt2hg87/image/upload/v1695636071/dalav1zk6ifhk5ksplh1.jpg"
+      <FaPinterestSquare
         alt="pintrest-social-icon"
         className="each-image pin-image"
+        testid="pintrest-social-icon"
       />
-      <img
-        src="https://res.cloudinary.com/dcqt2hg87/image/upload/v1703489409/instagram_udfroh.png"
+
+      <FaInstagram
         alt="instagram-social-icon"
+        testid="instagram-social-icon"
         className="each-image"
       />
 
-      <img
-        src="https://res.cloudinary.com/dcqt2hg87/image/upload/v1703489535/twitter_ztzqds.png"
+      <FaTwitter
         alt="twitter-social-icon"
         className="each-image"
+        testid="twitter-social-icon"
       />
-      <img
-        src="https://res.cloudinary.com/dcqt2hg87/image/upload/v1695636358/Frame_13_xtrlkx.jpg"
+      <FaFacebookSquare
         alt="facebook-social-icon"
         className="each-image"
+        testid="facebook-social-icon"
       />
     </div>
   </div>

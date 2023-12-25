@@ -27,3 +27,6 @@
   width: 530px;
   height: 64px;
 }
+.link-not-found{
+    text-decoration: none;
+}

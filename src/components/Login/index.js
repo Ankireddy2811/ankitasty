@@ -1,5 +1,7 @@
 import {Component} from 'react'
 
+import {Redirect} from 'react-router-dom'
+
 import Cookies from 'js-cookie'
 
 import './index.css'
@@ -45,6 +47,11 @@ class Login extends Component {
 
   render() {
     const {username, password, errorMsg} = this.state
+    const jwtToken = Cookies.get('jwt_token')
+    if (jwtToken !== undefined) {
+      return <Redirect to="/" />
+    }
+
     return (
       <div className="login-container">
         <div className="first-container">
@@ -58,7 +65,7 @@ class Login extends Component {
               className="logo-image"
             />
             <h1 className="logo-heading">Tasty Kitchens</h1>
-            <p className="login-para">Login</p>
+            <h1 className="login-para">Login</h1>
             <div className="user-name-container">
               <label htmlFor="user-label" className="user-name">
                 USERNAME
@@ -95,7 +102,7 @@ class Login extends Component {
 
         <img
           src="https://res.cloudinary.com/dcqt2hg87/image/upload/v1695572640/tasty_djx9dh.png"
-          alt="login"
+          alt="website logo"
           className="login-image"
         />
       </div>

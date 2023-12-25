@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom'
 import './index.css'
 
 const NotFound = props => {
@@ -17,13 +18,15 @@ const NotFound = props => {
         We are sorry, the page you requested could not be found. Please go back
         to the homepage
       </p>
-      <button
-        type="button"
-        className="home-page-btn"
-        onClick={onHomePageButton}
-      >
-        Home Page
-      </button>
+      <Link to="/" className="link-not-found">
+        <button
+          type="button"
+          className="home-page-btn"
+          onClick={onHomePageButton}
+        >
+          Home Page
+        </button>
+      </Link>
     </div>
   )
 }

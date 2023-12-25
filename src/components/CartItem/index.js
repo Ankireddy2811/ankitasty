@@ -57,7 +57,7 @@ class CartItem extends Component {
           }
 
           return (
-            <li className="cart-item" data-testid="cartItem">
+            <li data-testid="cartItem" className="cart-item">
               <img className="cart-product-image" src={imageUrl} alt={name} />
               <div className="cart-item-details-container">
                 <div className="cart-product-title-brand-container">

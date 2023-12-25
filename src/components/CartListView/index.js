@@ -52,8 +52,8 @@ const CartListView = props => (
             className="line"
           />
           <div className="total-price-container">
-            <h2 className="order-total">Order Total :</h2>
-            <h2 className="total-price">₹ {calculateTotalPrice()}</h2>
+            <h1 className="order-total">Order Total :</h1>
+            <p className="total-price">₹ {calculateTotalPrice()}</p>
           </div>
           <button
             className="place-order-btn"

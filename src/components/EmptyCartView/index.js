@@ -1,4 +1,4 @@
-import {withRouter} from 'react-router-dom'
+import {withRouter, Link} from 'react-router-dom'
 
 import './index.css'
 
@@ -14,18 +14,19 @@ const EmptyCartView = props => {
         className="cart-empty-image"
         alt="empty cart"
       />
-      <h1 className="cart-empty-heading">No Orders Yet!</h1>
+      <h1 className="cart-empty-heading">No Order Yet!</h1>
       <p className="cart-empty-para">
         Your cart is empty. Add something from the menu.
       </p>
-
-      <button
-        type="button"
-        className="order-now-btn"
-        onClick={onOrderNowButton}
-      >
-        Order Now
-      </button>
+      <Link to="/" className="link-not-found">
+        <button
+          type="button"
+          className="order-now-btn"
+          onClick={onOrderNowButton}
+        >
+          Order Now
+        </button>
+      </Link>
     </div>
   )
 }
