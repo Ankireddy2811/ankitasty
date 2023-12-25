@@ -66,8 +66,52 @@
   align-items: center;
   flex-wrap: wrap;
   list-style: none;
-  height: 1900px;
+ 
   padding-left: 165px;
   padding-top: 32px;
   padding-bottom: 30px;
+}
+
+@media (max-width: 768px) {
+  .each-restaruant-container {
+    width: 360px;
+    height: 1308px;
+  }
+
+  .restaruant-details-container {
+    width: 400px;
+    height: 208px;
+    padding-left: 0px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+  }
+  .main-image {
+    width: 130px;
+    height: 200px;
+    flex-shrink: 0;
+    border-top-right-radius: 250px;
+
+    border-bottom-right-radius: 350px;
+    border-bottom-left-radius: 100px;
+    padding-bottom: 40px;
+  }
+  .restaurant-name {
+    line-height: 8px; /* 133.333% */
+    font-size: 16px;
+  }
+  .restaurant-cuisine {
+    font-size: 12px;
+    line-height: 16px; /* 150% */
+  }
+  .restaurant-location {
+    line-height: 16px;
+    font-size: 12px;
+  }
+  .unordered-food-items {
+    align-items: flex-start;
+    flex-direction: column;
+    padding-left: 10px;
+    padding-top: 12px;
+    padding-bottom: 10px;
+  }
 }

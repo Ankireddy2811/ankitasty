@@ -90,5 +90,15 @@
   line-height: 24px; /* 150% */
   margin-left: 10px;
   margin-right: 10px;
+}
 
+@media (max-width;768px) {
+  .each-restaruant-food-list-item {
+    width: 100%;
+  }
+  .each-food-item-image {
+    width: 160px;
+    height: 100px;
+    border-radius: 5.02px;
+  }
 }
