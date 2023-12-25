@@ -13,7 +13,7 @@ const Cart = () => (
       const {cartList} = value
       const showEmptyView = cartList.length === 0
       return (
-        <>
+        <div className="main-cart-container">
           <Header />
           <div className="cart-container">
             {showEmptyView ? (
@@ -25,7 +25,7 @@ const Cart = () => (
             )}
           </div>
           {!showEmptyView && <Footer />}
-        </>
+        </div>
       )
     }}
   </CartContext.Consumer>

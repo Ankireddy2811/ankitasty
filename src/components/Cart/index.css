@@ -1,15 +1,12 @@
+.main-cart-container {
+  width: 1440px;
+
+}
+
 .cart-container {
   display: flex;
   justify-content: center;
-
-  width: 1440px;
   
-}
-
-@media screen and (min-width: 768px) {
-  .cart-container {
-    min-height: 90vh;
-  }
 }
 
 .cart-content-container {
@@ -17,11 +14,17 @@
   flex-direction: column;
   width: 90%;
   max-width: 1110px;
+ 
 }
 
-@media screen and (min-width: 768px) {
-  .cart-content-container {
-    width: 80%;
-    max-width: 1110px;
+@media (max-width: 768px) {
+  .main-cart-container {
+    width: 400px;
+   
   }
+  .cart-content-container {
+    width: 90%;
+   
+  }
+
 }

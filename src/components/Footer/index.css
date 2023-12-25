@@ -67,7 +67,7 @@
 
 @media (max-width: 768px) {
   .footer-container {
-    width:100%;
+    width:400px;
     height: 256px;
     flex-shrink: 0;
     background: #0f172a;
