@@ -54,7 +54,7 @@ class Login extends Component {
           >
             <img
               src="https://res.cloudinary.com/dcqt2hg87/image/upload/v1695573609/Frame_274_h1px52.jpg"
-              alt="logo"
+              alt="website login"
               className="logo-image"
             />
             <h1 className="logo-heading">Tasty Kitchens</h1>

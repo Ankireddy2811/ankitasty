@@ -85,7 +85,7 @@ class EachRestaurant extends Component {
       <>
         <img
           src={restaurantData.imageUrl}
-          alt={restaurantData.name}
+          alt="restaurant"
           className="main-image"
         />
         <div className="restaurant-each-detail-container">

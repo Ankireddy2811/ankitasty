@@ -5,7 +5,7 @@ const Footer = () => (
     <div className="first-footer-container">
       <img
         src="https://res.cloudinary.com/dcqt2hg87/image/upload/v1695636044/sfjl4vhmite68njbcwsc.jpg"
-        alt="footer-logo"
+        alt="website-footer-logo"
       />
       <h1 className="footer-heading">Tasty Kitchens</h1>
     </div>
@@ -16,23 +16,23 @@ const Footer = () => (
     <div className="icons-container">
       <img
         src="https://res.cloudinary.com/dcqt2hg87/image/upload/v1695636071/dalav1zk6ifhk5ksplh1.jpg"
-        alt="pinterest"
+        alt="pintrest-social-icon"
         className="each-image pin-image"
       />
       <img
         src="https://res.cloudinary.com/dcqt2hg87/image/upload/v1703489409/instagram_udfroh.png"
-        alt="instagram"
+        alt="instagram-social-icon"
         className="each-image"
       />
 
       <img
         src="https://res.cloudinary.com/dcqt2hg87/image/upload/v1703489535/twitter_ztzqds.png"
-        alt="twitter"
+        alt="twitter-social-icon"
         className="each-image"
       />
       <img
         src="https://res.cloudinary.com/dcqt2hg87/image/upload/v1695636358/Frame_13_xtrlkx.jpg"
-        alt="facebook"
+        alt="facebook-social-icon"
         className="each-image"
       />
     </div>

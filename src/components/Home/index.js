@@ -111,7 +111,7 @@ class Home extends Component {
   }
 
   getLoadingView = () => (
-    <div className="loader-container">
+    <div className="loader-container" data-testid="restaurants-list-loader">
       <Loader type="ThreeDots" width={80} height={80} color="#F7931E" />
     </div>
   )

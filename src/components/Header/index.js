@@ -1,5 +1,5 @@
 import Popup from 'reactjs-popup'
-
+import {IoMdClose} from 'react-icons/io'
 import Cookies from 'js-cookie'
 import {withRouter, Link} from 'react-router-dom'
 
@@ -20,7 +20,7 @@ const Header = props => {
         <Link to="/">
           <img
             src="https://res.cloudinary.com/dcqt2hg87/image/upload/v1695573609/Frame_274_h1px52.jpg"
-            alt="logo"
+            alt="website logo"
             className="header-logo-image"
           />
         </Link>
@@ -54,20 +54,33 @@ const Header = props => {
                 />
               </button>
             }
+            className="popup-content"
           >
             {close => (
-              <>
-                <Link to="/" className="home-list-item">
-                  Home
-                </Link>
+              <div className="modal-container">
                 <button
+                  className="close-button"
                   type="button"
-                  className="trigger-button"
+                  data-testid="closeButton"
+                  aria-label="Close Menu"
                   onClick={() => close()}
                 >
-                  x
+                  <IoMdClose size="30" color="#616e7c" />
                 </button>
-              </>
+
+                <ul className="nav-links-list">
+                  <li className="nav-link-item">
+                    <Link className="nav-link" to="/" onClick={() => close()}>
+                      <p className="nav-link-content">Home</p>
+                    </Link>
+                  </li>
+                  <li className="nav-link-item">
+                    <Link className="nav-link" to="/cart">
+                      Cart
+                    </Link>
+                  </li>
+                </ul>
+              </div>
             )}
           </Popup>
         </div>

@@ -57,7 +57,7 @@ class CartItem extends Component {
           }
 
           return (
-            <li className="cart-item">
+            <li className="cart-item" data-testid="cartItem">
               <img className="cart-product-image" src={imageUrl} alt={name} />
               <div className="cart-item-details-container">
                 <div className="cart-product-title-brand-container">
@@ -67,20 +67,27 @@ class CartItem extends Component {
                   <button
                     type="button"
                     className="alter-buttons"
+                    data-testid="decrement-quantity"
                     onClick={onDecButtonClicked}
                   >
                     -
                   </button>
-                  <p className="cart-quantity">{quantity}</p>
+                  <p className="cart-quantity" data-testid="item-quantity">
+                    {quantity}
+                  </p>
                   <button
                     type="button"
                     className="alter-buttons"
+                    data-testid="increment-quantity"
                     onClick={onIncButtonClicked}
                   >
                     +
                   </button>
                 </div>
-                <div className="total-price-delete-container">
+                <div
+                  className="total-price-delete-container"
+                  data-testid="total-price"
+                >
                   <p className="cart-total-price">₹ {this.calculateCost()}/-</p>
                 </div>
               </div>

@@ -62,7 +62,7 @@ class CarouselData extends Component {
   }
 
   getLoadingView = () => (
-    <div className="loader-container">
+    <div className="loader-container" data-testid="restaurants-offers-loader">
       <Loader type="ThreeDots" width={80} height={80} color="#F7931E" />
     </div>
   )
@@ -86,7 +86,7 @@ class CarouselData extends Component {
             <div className="each-carousel-slide" key={eachItem.id}>
               <img
                 src={eachItem.imageUrl}
-                alt={eachItem.id}
+                alt="offer"
                 className="each-carousel-image"
               />
             </div>

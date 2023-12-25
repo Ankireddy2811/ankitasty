@@ -1,9 +1,9 @@
 import React from 'react'
 
-const existingCartList = JSON.parse(localStorage.getItem('cart_list'))
-console.log(existingCartList)
+const existingCartList = JSON.parse(localStorage.getItem('cartData'))
+const storedCartList = existingCartList === null ? [] : existingCartList
 const CartContext = React.createContext({
-  cartList: existingCartList,
+  cartList: storedCartList,
   addCartItem: () => {},
   deleteCartItem: () => {},
   clearAllCartItems: () => {},

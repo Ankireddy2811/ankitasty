@@ -10,7 +10,7 @@ const NotFound = props => {
     <div className="not-found-container">
       <img
         src="https://res.cloudinary.com/dcqt2hg87/image/upload/v1703422260/erroring_1_xq5cef.png"
-        alt="not-found"
+        alt="not found"
       />
       <h2 className="not-found-heading">Page Not Found</h2>
       <p className="not-found-para">

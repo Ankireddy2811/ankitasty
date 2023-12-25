@@ -12,7 +12,7 @@ const EmptyCartView = props => {
       <img
         src="https://res.cloudinary.com/dcqt2hg87/image/upload/v1703322378/cooking_1_jurppp.png"
         className="cart-empty-image"
-        alt="cart empty"
+        alt="empty cart"
       />
       <h1 className="cart-empty-heading">No Orders Yet!</h1>
       <p className="cart-empty-para">

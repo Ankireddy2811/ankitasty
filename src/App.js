@@ -19,8 +19,11 @@ import CartContext from './context/CartContext'
 
 import './App.css'
 
+const existingCartList = JSON.parse(localStorage.getItem('cartData'))
+const storedCartList = existingCartList === null ? [] : existingCartList
+
 class App extends Component {
-  state = {cartList: JSON.parse(localStorage.getItem('cart_list'))}
+  state = {cartList: storedCartList}
 
   addCartItem = newCartItem => {
     this.setState(prevState => {
@@ -32,13 +35,13 @@ class App extends Component {
         // Item already exists in the cart, update its quantity
         const updatedCartList = [...prevState.cartList]
         updatedCartList[existingItemIndex].quantity = newCartItem.quantity
-        localStorage.setItem('cart_list', JSON.stringify(updatedCartList))
+        localStorage.setItem('cartData', JSON.stringify(updatedCartList))
         return {cartList: updatedCartList}
       }
 
       // Item is not in the cart, add it
       localStorage.setItem(
-        'cart_list',
+        'cartData',
         JSON.stringify([...prevState.cartList, newCartItem]),
       )
       return {cartList: [...prevState.cartList, newCartItem]}
@@ -48,12 +51,12 @@ class App extends Component {
   deleteCartItem = id => {
     const {cartList} = this.state
     const filteredCartList = cartList.filter(eachItem => eachItem.id !== id)
-    localStorage.setItem('cart_list', JSON.stringify(filteredCartList))
+    localStorage.setItem('cartData', JSON.stringify(filteredCartList))
     this.setState({cartList: filteredCartList})
   }
 
   clearAllCartItems = () => {
-    localStorage.setItem('cart_list', JSON.stringify([]))
+    localStorage.setItem('cartData', JSON.stringify([]))
     this.setState({cartList: []})
   }
 

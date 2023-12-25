@@ -61,7 +61,10 @@ class EachRestaurantFoodItem extends Component {
           }
 
           return (
-            <li className="each-restaruant-food-list-item">
+            <li
+              className="each-restaruant-food-list-item"
+              data-testid="foodItem"
+            >
               <img
                 src={eachContent.imageUrl}
                 alt={eachContent.name}
@@ -82,15 +85,19 @@ class EachRestaurantFoodItem extends Component {
                     <button
                       type="button"
                       onClick={onDecrement}
+                      data-testid="decrement-count"
                       className="alter-buttons"
                     >
                       -
                     </button>
-                    <div className="item-count-text">{quantity}</div>
+                    <div className="item-count-text" data-testid="active-count">
+                      {quantity}
+                    </div>
                     <button
                       type="button"
                       onClick={onIncrement}
                       className="alter-buttons"
+                      data-testid="increment-count"
                     >
                       +
                     </button>

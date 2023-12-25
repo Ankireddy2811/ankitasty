@@ -4,11 +4,15 @@ import './index.css'
 const EachFoodItem = props => {
   const {eachContent} = props
   return (
-    <Link to={`/restaurant/${eachContent.id}`} className="each-link-item">
+    <Link
+      to={`/restaurant/${eachContent.id}`}
+      className="each-link-item"
+      data-testid="restaurant-item"
+    >
       <li className="each-food-list-item">
         <img
           src={eachContent.imageUrl}
-          alt={eachContent.name}
+          alt="restaurant"
           className="each-food-image"
         />
         <div className="food-text-container">
