@@ -1,5 +1,9 @@
+import Popup from 'reactjs-popup'
+
 import Cookies from 'js-cookie'
 import {withRouter, Link} from 'react-router-dom'
+
+import 'reactjs-popup/dist/index.css'
 
 import './index.css'
 
@@ -39,6 +43,34 @@ const Header = props => {
             Logout
           </button>
         </li>
+        <div className="popup-container">
+          <Popup
+            modal
+            trigger={
+              <button type="button" className="hamburger-menu">
+                <img
+                  src="https://res.cloudinary.com/dcqt2hg87/image/upload/v1703511061/menu_mvkbiz.png"
+                  alt="menu"
+                />
+              </button>
+            }
+          >
+            {close => (
+              <>
+                <Link to="/" className="home-list-item">
+                  Home
+                </Link>
+                <button
+                  type="button"
+                  className="trigger-button"
+                  onClick={() => close()}
+                >
+                  x
+                </button>
+              </>
+            )}
+          </Popup>
+        </div>
       </ul>
     </div>
   )
