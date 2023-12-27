@@ -94,15 +94,15 @@ class EachRestaurant extends Component {
           <p className="restaurant-location">{restaurantData.location}</p>
           <div className="rating-reviews-container">
             <div>
-              <h2 className="restaurant-rating">{restaurantData.rating}</h2>
+              <p className="restaurant-rating">{restaurantData.rating}</p>
 
               <p className="restaurant-total-ratings">{`${restaurantData.totalReviews}+ Ratings`}</p>
             </div>
             <hr className="horizontal-line" />
             <div>
-              <h2 className="restaurant-two-items">
+              <p className="restaurant-two-items">
                 {restaurantData.costForTwo}
-              </h2>
+              </p>
               <p className="restaurant-two-items-para">Cost for two</p>
             </div>
           </div>
@@ -135,7 +135,10 @@ class EachRestaurant extends Component {
           }
 
           const getLoadingView = () => (
-            <div className="loader-container">
+            <div
+              className="loader-container"
+              testid="restaurant-details-loader"
+            >
               <Loader type="ThreeDots" width={80} height={80} color="#F7931E" />
             </div>
           )

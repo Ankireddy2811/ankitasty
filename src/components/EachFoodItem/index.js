@@ -7,7 +7,7 @@ const EachFoodItem = props => {
     <Link
       to={`/restaurant/${eachContent.id}`}
       className="each-link-item"
-      data-testid="restaurant-item"
+      testid="restaurant-item"
     >
       <li className="each-food-list-item">
         <img

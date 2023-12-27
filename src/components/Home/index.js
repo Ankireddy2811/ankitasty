@@ -111,19 +111,48 @@ class Home extends Component {
   }
 
   getLoadingView = () => (
-    <div className="loader-container" data-testid="restaurants-list-loader">
+    <div className="loader-container" testid="restaurants-list-loader">
       <Loader type="ThreeDots" width={80} height={80} color="#F7931E" />
     </div>
   )
 
   getSuccessFoodListView = () => {
-    const {foodListsData} = this.state
+    const {foodListsData, activePage} = this.state
     return (
-      <ul className="unordered-food-lists">
-        {foodListsData.map(eachItem => (
-          <EachFoodItem key={eachItem.id} eachContent={eachItem} />
-        ))}
-      </ul>
+      <>
+        <ul className="unordered-food-lists">
+          {foodListsData.map(eachItem => (
+            <EachFoodItem key={eachItem.id} eachContent={eachItem} />
+          ))}
+        </ul>
+        <div className="pagination-container">
+          <button
+            className="arrow-button"
+            type="button"
+            testid="pagination-left-button"
+            onClick={this.onLeftArrowClicked}
+          >
+            <img
+              src="https://res.cloudinary.com/dcqt2hg87/image/upload/v1703424653/Chevron_Left_-_16px_ilu29s.png"
+              alt="left-arrow"
+            />
+          </button>
+          <span testid="active-page-number" className="pagination-para">
+            {activePage} of 4
+          </span>{' '}
+          <button
+            className="arrow-button"
+            type="button"
+            testid="pagination-right-button"
+            onClick={this.onRightArrowClicked}
+          >
+            <img
+              src="https://res.cloudinary.com/dcqt2hg87/image/upload/v1703424756/Chevron_Right_-_16px_ucpizv.png"
+              alt="right-arrow"
+            />
+          </button>
+        </div>
+      </>
     )
   }
 
@@ -140,7 +169,7 @@ class Home extends Component {
   }
 
   render() {
-    const {selectedSortByValue, activePage} = this.state
+    const {selectedSortByValue} = this.state
 
     return (
       <div className="home-container">
@@ -169,33 +198,6 @@ class Home extends Component {
           </div>
         </div>
         {this.onRenderFoodList()}
-        <div className="pagination-container">
-          <button
-            className="arrow-button"
-            type="button"
-            data-testid="pagination-left-button"
-            onClick={this.onLeftArrowClicked}
-          >
-            <img
-              src="https://res.cloudinary.com/dcqt2hg87/image/upload/v1703424653/Chevron_Left_-_16px_ilu29s.png"
-              alt="left-arrow"
-            />
-          </button>
-          <span data-testid="active-page-number" className="pagination-para">
-            {activePage} of 4
-          </span>{' '}
-          <button
-            className="arrow-button"
-            type="button"
-            data-testid="pagination-right-button"
-            onClick={this.onRightArrowClicked}
-          >
-            <img
-              src="https://res.cloudinary.com/dcqt2hg87/image/upload/v1703424756/Chevron_Right_-_16px_ucpizv.png"
-              alt="right-arrow"
-            />
-          </button>
-        </div>
         <Footer />
       </div>
     )

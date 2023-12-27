@@ -62,7 +62,7 @@ class CarouselData extends Component {
   }
 
   getLoadingView = () => (
-    <div className="loader-container" data-testid="restaurants-offers-loader">
+    <div className="loader-container" testid="restaurants-offers-loader">
       <Loader type="ThreeDots" width={80} height={80} color="#F7931E" />
     </div>
   )

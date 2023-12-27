@@ -57,28 +57,28 @@ class CartItem extends Component {
           }
 
           return (
-            <li data-testid="cartItem" className="cart-item">
+            <div testid="cartItem" className="cart-item">
               <img className="cart-product-image" src={imageUrl} alt={name} />
               <div className="cart-item-details-container">
                 <div className="cart-product-title-brand-container">
-                  <p className="cart-product-title">{name}</p>
+                  <h1 className="cart-product-title">{name}</h1>
                 </div>
                 <div className="cart-quantity-container">
                   <button
                     type="button"
                     className="alter-buttons"
-                    data-testid="decrement-quantity"
+                    testid="decrement-quantity"
                     onClick={onDecButtonClicked}
                   >
                     -
                   </button>
-                  <p className="cart-quantity" data-testid="item-quantity">
+                  <p className="cart-quantity" testid="item-quantity">
                     {quantity}
                   </p>
                   <button
                     type="button"
                     className="alter-buttons"
-                    data-testid="increment-quantity"
+                    testid="increment-quantity"
                     onClick={onIncButtonClicked}
                   >
                     +
@@ -86,12 +86,12 @@ class CartItem extends Component {
                 </div>
                 <div
                   className="total-price-delete-container"
-                  data-testid="total-price"
+                  testid="total-price"
                 >
                   <p className="cart-total-price">₹ {this.calculateCost()}/-</p>
                 </div>
               </div>
-            </li>
+            </div>
           )
         }}
       </CartContext.Consumer>

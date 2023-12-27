@@ -61,43 +61,40 @@ class EachRestaurantFoodItem extends Component {
           }
 
           return (
-            <li
-              className="each-restaruant-food-list-item"
-              data-testid="foodItem"
-            >
+            <li className="each-restaruant-food-list-item" testid="foodItem">
               <img
                 src={eachContent.imageUrl}
                 alt={eachContent.name}
                 className="each-food-item-image"
               />
               <div className="item-details">
-                <h2 className="item-name">{eachContent.name}</h2>
+                <h1 className="item-name">{eachContent.name}</h1>
                 <p className="item-cost">₹ {eachContent.cost}</p>
                 <span className="item-rating-container">
                   <img
                     src="https://res.cloudinary.com/dcqt2hg87/image/upload/v1703165215/star_rktiju.png"
                     alt="rating"
                   />
-                  <h2 className="item-rating">{eachContent.rating}</h2>
+                  <p className="item-rating">{eachContent.rating}</p>
                 </span>
                 {quantity > 0 ? (
                   <div className="add-sub-button-container">
                     <button
                       type="button"
                       onClick={onDecrement}
-                      data-testid="decrement-count"
+                      testid="decrement-count"
                       className="alter-buttons"
                     >
                       -
                     </button>
-                    <div className="item-count-text" data-testid="active-count">
+                    <div className="item-count-text" testid="active-count">
                       {quantity}
                     </div>
                     <button
                       type="button"
                       onClick={onIncrement}
                       className="alter-buttons"
-                      data-testid="increment-count"
+                      testid="increment-count"
                     >
                       +
                     </button>

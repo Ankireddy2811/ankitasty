@@ -21,9 +21,9 @@ const Payment = props => (
               src="https://res.cloudinary.com/dcqt2hg87/image/upload/v1703421464/check-circle.1_1_g7jver.png"
               alt="payment"
             />
-            <h2 className="payment-text">Payment Successful</h2>
+            <h1 className="payment-text">Payment Successful</h1>
             <p className="payment-para">
-              Thank you for ordering Your payment is successfully completed.
+              Thank you for ordering Your payment is successfully completed.
             </p>
             <Link to="/" className="link-not-found">
               <button

@@ -16,7 +16,7 @@ const Header = props => {
 
   return (
     <div className="header-container">
-      <div className="first-unordered-list">
+      <ul className="first-unordered-list">
         <Link to="/">
           <img
             src="https://res.cloudinary.com/dcqt2hg87/image/upload/v1695573609/Frame_274_h1px52.jpg"
@@ -25,14 +25,16 @@ const Header = props => {
           />
         </Link>
 
-        <p className="header-first-para">Tasty Kitchens</p>
-      </div>
+        <Link to="/">
+          <p className="header-first-para">Tasty Kitchens</p>
+        </Link>
+      </ul>
       <ul className="second-unordered-list">
         <Link to="/" className="home-list-item">
-          Home
+          <li>Home</li>
         </Link>
         <Link to="/cart" className="cart-list-item">
-          Cart
+          <li>Cart</li>
         </Link>
         <li className="home-list-item">
           <button
@@ -61,7 +63,7 @@ const Header = props => {
                 <button
                   className="close-button"
                   type="button"
-                  data-testid="closeButton"
+                  testid="closeButton"
                   aria-label="Close Menu"
                   onClick={() => close()}
                 >
