@@ -2,10 +2,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 1440px;
+  width:100%;
   padding: 2px 0px 0px 0px;
   gap: 48px;
-  background: #fff;
+  background:#fff;
 }
 
 .popular-restaruants {
@@ -32,7 +32,6 @@
   font-style: normal;
   font-weight: 500;
   line-height: 24px; /* 150% */
-  
 }
 
 .filter-container {
@@ -50,7 +49,6 @@
   line-height: 24px; /* 150% */
   margin-left: 10px;
   height: 24px;
-  
 }
 .filter-icon {
   display: flex;
@@ -66,7 +64,6 @@
 .unordered-food-lists {
   list-style: none;
   width: 100%;
-
   flex-wrap: wrap;
   display: flex;
   align-items: center;
@@ -140,12 +137,13 @@
 
 @media (max-width: 768px) {
   .home-container {
-    width: 390px;
-    background: #fff;
+    width: 100%;
+    background:#fff;
     padding: 0px 0px 0px 0px;
     flex-direction: column;
     align-items: center;
     gap: 18px;
+    padding-right: 0px;
   }
   .popular-restaruants {
     width: 100%;
@@ -179,5 +177,11 @@
     flex-grow: 0;
     padding-left: 10px;
     flex-shrink: 0;
+  }
+  .popular-restaruants {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
   }
 }

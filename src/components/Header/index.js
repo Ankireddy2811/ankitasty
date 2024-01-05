@@ -1,5 +1,6 @@
-import Popup from 'reactjs-popup'
-import {IoMdClose} from 'react-icons/io'
+// import Popup from 'reactjs-popup'
+import {Component} from 'react'
+// import {IoMdClose} from 'react-icons/io'
 import Cookies from 'js-cookie'
 import {withRouter, Link} from 'react-router-dom'
 
@@ -7,89 +8,159 @@ import 'reactjs-popup/dist/index.css'
 
 import './index.css'
 
-const Header = props => {
-  const {history} = props
-  const onLogoutButtonClicked = () => {
+class Header extends Component {
+  state = {isClicked: false}
+
+  onCloseButtonClicked = () => {
+    this.setState({isClicked: false})
+  }
+
+  onLogoutButtonClicked = () => {
+    const {history} = this.props
     Cookies.remove('jwt_token')
     history.replace('/login')
   }
 
-  return (
-    <div className="header-container">
-      <ul className="first-unordered-list">
-        <Link to="/">
-          <img
-            src="https://res.cloudinary.com/dcqt2hg87/image/upload/v1695573609/Frame_274_h1px52.jpg"
-            alt="website logo"
-            className="header-logo-image"
-          />
-        </Link>
+  onHamburgerIcon = () => {
+    console.log('HI')
+    this.setState(prevState => ({isClicked: !prevState.isClicked}))
+  }
 
-        <Link to="/" className="header-first-para-link">
-          <p className="header-first-para">Tasty Kitchens</p>
-        </Link>
-      </ul>
-      <ul className="second-unordered-list">
-        <Link to="/" className="home-list-item">
-          <li>Home</li>
-        </Link>
-        <Link to="/cart" className="cart-list-item">
-          <li>Cart</li>
-        </Link>
-        <li className="home-list-item">
+  render() {
+    const {isClicked} = this.state
+
+    return (
+      <div className="header-container">
+        <div className="first-header-container">
+          <ul className="first-unordered-list">
+            <Link to="/">
+              <img
+                src="https://res.cloudinary.com/dcqt2hg87/image/upload/v1695573609/Frame_274_h1px52.jpg"
+                alt="website logo"
+                className="header-logo-image"
+              />
+            </Link>
+
+            <Link to="/" className="header-first-para-link">
+              <p className="header-first-para">Tasty Kitchens</p>
+            </Link>
+          </ul>
+          <ul className="second-unordered-list">
+            <Link to="/" className="home-list-item">
+              <li>Home</li>
+            </Link>
+            <Link to="/cart" className="cart-list-item">
+              <li>Cart</li>
+            </Link>
+            <li className="home-list-item">
+              <button
+                type="button"
+                className="logout-button"
+                onClick={this.onLogoutButtonClicked}
+              >
+                Logout
+              </button>
+            </li>
+          </ul>
           <button
             type="button"
-            className="logout-button"
-            onClick={onLogoutButtonClicked}
+            className="hamburger-menu"
+            onClick={this.onHamburgerIcon}
           >
-            Logout
+            <img
+              src="https://res.cloudinary.com/dcqt2hg87/image/upload/v1703511061/menu_mvkbiz.png"
+              alt="menu"
+            />
           </button>
-        </li>
-      </ul>
+        </div>
 
-      <div className="popup-container">
-        <Popup
-          modal
-          trigger={
-            <button type="button" className="hamburger-menu">
-              <img
-                src="https://res.cloudinary.com/dcqt2hg87/image/upload/v1703511061/menu_mvkbiz.png"
-                alt="menu"
-              />
-            </button>
-          }
-          className="popup-content"
-        >
-          {/* testid="closeButton" */}
-          {close => (
-            <div className="modal-container">
+        {isClicked && (
+          <ul className="nav-links-list">
+            <li>
+              <Link to="/" className="home-list-item">
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link to="/cart" className="cart-list-item">
+                Cart
+              </Link>
+            </li>
+
+            <li className="home-list-item">
               <button
-                className="close-button"
                 type="button"
-                aria-label="Close Menu"
-                onClick={() => close()}
+                className="logout-button"
+                onClick={this.onLogoutButtonClicked}
               >
-                <IoMdClose size="30" color="#616e7c" />
+                Logout
               </button>
-
-              <ul className="nav-links-list">
-                <li className="nav-link-item">
-                  <Link className="nav-link" to="/" onClick={() => close()}>
-                    <p className="nav-link-content">Home</p>
-                  </Link>
-                </li>
-                <li className="nav-link-item">
-                  <Link className="nav-link" to="/cart">
-                    Cart
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          )}
-        </Popup>
+            </li>
+            <li>
+              <button
+                type="button"
+                className="small-close-button"
+                onClick={this.onCloseButtonClicked}
+              >
+                <img
+                  src="https://res.cloudinary.com/dcqt2hg87/image/upload/v1704449940/close_ajagb2.png"
+                  alt="close"
+                />
+              </button>
+            </li>
+          </ul>
+        )}
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 export default withRouter(Header)
+
+//  <div className="popup-container">
+//         <Popup
+//           modal
+//           trigger={
+//             <button type="button" className="hamburger-menu">
+//               <img
+//                 src="https://res.cloudinary.com/dcqt2hg87/image/upload/v1703511061/menu_mvkbiz.png"
+//                 alt="menu"
+//               />
+//             </button>
+//           }
+//           className="popup-content"
+//         >
+//           {/* testid="closeButton" */}
+//           {close => (
+//             <div className="modal-container">
+//               <button
+//                 className="close-button"
+//                 type="button"
+//                 aria-label="Close Menu"
+//                 onClick={() => close()}
+//               >
+//                 <IoMdClose size="30" color="#616e7c" />
+//               </button>
+
+//               <ul className="nav-links-list">
+//                 <Link to="/" className="home-list-item">
+//                   <li>Home</li>
+//                 </Link>
+//                 <Link to="/cart" className="cart-list-item">
+//                   <li>Cart</li>
+//                 </Link>
+//                 <li className="home-list-item">
+//                   <button
+//                     type="button"
+//                     className="logout-button"
+//                     onClick={onLogoutButtonClicked}
+//                   >
+//                     Logout
+//                   </button>
+//                 </li>
+//               </ul>
+//             </div>
+//           )}
+//         </Popup>
+//       </div>
+//    </div>
