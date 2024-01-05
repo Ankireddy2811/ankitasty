@@ -99,11 +99,15 @@ class Login extends Component {
             <p className="error-msg">{errorMsg}</p>
           </form>
         </div>
-
         <img
           src="https://res.cloudinary.com/dcqt2hg87/image/upload/v1695572640/tasty_djx9dh.png"
           alt="website logo"
           className="login-image"
+        />
+        <img
+          src="https://res.cloudinary.com/dcqt2hg87/image/upload/v1704432623/logout_fvj1z1.png"
+          alt="login images"
+          className="login-image-small-device"
         />
       </div>
     )
