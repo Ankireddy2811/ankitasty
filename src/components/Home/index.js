@@ -192,7 +192,9 @@ class Home extends Component {
                 onChange={this.onChangeRatingOption}
               >
                 {sortByOptions.map(eachItem => (
-                  <option key={eachItem.value}>{eachItem.displayText}</option>
+                  <option key={eachItem.value}>
+                    Sort by {eachItem.displayText}
+                  </option>
                 ))}
               </select>
             </div>

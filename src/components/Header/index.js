@@ -45,48 +45,49 @@ const Header = props => {
             Logout
           </button>
         </li>
-        <div className="popup-container">
-          <Popup
-            modal
-            trigger={
-              <button type="button" className="hamburger-menu">
-                <img
-                  src="https://res.cloudinary.com/dcqt2hg87/image/upload/v1703511061/menu_mvkbiz.png"
-                  alt="menu"
-                />
-              </button>
-            }
-            className="popup-content"
-          >
-            {/* testid="closeButton" */}
-            {close => (
-              <div className="modal-container">
-                <button
-                  className="close-button"
-                  type="button"
-                  aria-label="Close Menu"
-                  onClick={() => close()}
-                >
-                  <IoMdClose size="30" color="#616e7c" />
-                </button>
-
-                <ul className="nav-links-list">
-                  <li className="nav-link-item">
-                    <Link className="nav-link" to="/" onClick={() => close()}>
-                      <p className="nav-link-content">Home</p>
-                    </Link>
-                  </li>
-                  <li className="nav-link-item">
-                    <Link className="nav-link" to="/cart">
-                      Cart
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            )}
-          </Popup>
-        </div>
       </ul>
+
+      <div className="popup-container">
+        <Popup
+          modal
+          trigger={
+            <button type="button" className="hamburger-menu">
+              <img
+                src="https://res.cloudinary.com/dcqt2hg87/image/upload/v1703511061/menu_mvkbiz.png"
+                alt="menu"
+              />
+            </button>
+          }
+          className="popup-content"
+        >
+          {/* testid="closeButton" */}
+          {close => (
+            <div className="modal-container">
+              <button
+                className="close-button"
+                type="button"
+                aria-label="Close Menu"
+                onClick={() => close()}
+              >
+                <IoMdClose size="30" color="#616e7c" />
+              </button>
+
+              <ul className="nav-links-list">
+                <li className="nav-link-item">
+                  <Link className="nav-link" to="/" onClick={() => close()}>
+                    <p className="nav-link-content">Home</p>
+                  </Link>
+                </li>
+                <li className="nav-link-item">
+                  <Link className="nav-link" to="/cart">
+                    Cart
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          )}
+        </Popup>
+      </div>
     </div>
   )
 }
