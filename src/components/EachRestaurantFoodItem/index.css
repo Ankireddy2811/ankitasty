@@ -94,6 +94,8 @@
 @media (max-width: 768px) {
   .each-restaruant-food-list-item {
     width: 100%;
+    height: 20vh;
+   
   }
   .each-food-item-image {
     width: 160px;

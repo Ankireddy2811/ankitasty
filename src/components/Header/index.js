@@ -25,7 +25,7 @@ const Header = props => {
           />
         </Link>
 
-        <Link to="/">
+        <Link to="/" className="header-first-para-link">
           <p className="header-first-para">Tasty Kitchens</p>
         </Link>
       </ul>
@@ -58,12 +58,12 @@ const Header = props => {
             }
             className="popup-content"
           >
+            {/* testid="closeButton" */}
             {close => (
               <div className="modal-container">
                 <button
                   className="close-button"
                   type="button"
-                  testid="closeButton"
                   aria-label="Close Menu"
                   onClick={() => close()}
                 >

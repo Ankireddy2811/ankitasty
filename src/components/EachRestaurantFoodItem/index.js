@@ -60,8 +60,10 @@ class EachRestaurantFoodItem extends Component {
             )
           }
 
+          /* testid="foodItem" */
+
           return (
-            <li className="each-restaruant-food-list-item" testid="foodItem">
+            <li className="each-restaruant-food-list-item">
               <img
                 src={eachContent.imageUrl}
                 alt={eachContent.name}
@@ -78,23 +80,20 @@ class EachRestaurantFoodItem extends Component {
                   <p className="item-rating">{eachContent.rating}</p>
                 </span>
                 {quantity > 0 ? (
+                  /* testid="decrement-count" testid="active-count"  testid="increment-count" */
                   <div className="add-sub-button-container">
                     <button
                       type="button"
                       onClick={onDecrement}
-                      testid="decrement-count"
                       className="alter-buttons"
                     >
                       -
                     </button>
-                    <div className="item-count-text" testid="active-count">
-                      {quantity}
-                    </div>
+                    <div className="item-count-text">{quantity}</div>
                     <button
                       type="button"
                       onClick={onIncrement}
                       className="alter-buttons"
-                      testid="increment-count"
                     >
                       +
                     </button>

@@ -110,8 +110,10 @@ class Home extends Component {
     this.setState({selectedSortByValue: event.target.value}, this.getFoodsList)
   }
 
+  //   testid="restaurants-list-loader"
+
   getLoadingView = () => (
-    <div className="loader-container" testid="restaurants-list-loader">
+    <div className="loader-container">
       <Loader type="ThreeDots" width={80} height={80} color="#F7931E" />
     </div>
   )
@@ -129,7 +131,7 @@ class Home extends Component {
           <button
             className="arrow-button"
             type="button"
-            testid="pagination-left-button"
+            // testid="pagination-left-button"
             onClick={this.onLeftArrowClicked}
           >
             <img
@@ -137,13 +139,12 @@ class Home extends Component {
               alt="left-arrow"
             />
           </button>
-          <span testid="active-page-number" className="pagination-para">
-            {activePage} of 4
-          </span>{' '}
+          {/* testid="active-page-number" */}
+          <span className="pagination-para">{activePage} of 4</span>{' '}
           <button
             className="arrow-button"
             type="button"
-            testid="pagination-right-button"
+            // testid="pagination-right-button"
             onClick={this.onRightArrowClicked}
           >
             <img

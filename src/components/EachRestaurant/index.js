@@ -134,11 +134,10 @@ class EachRestaurant extends Component {
             return foundCartItem === null ? eachItem : foundCartItem
           }
 
+          /* testid="restaurant-details-loader" */
+
           const getLoadingView = () => (
-            <div
-              className="loader-container"
-              testid="restaurant-details-loader"
-            >
+            <div className="loader-container">
               <Loader type="ThreeDots" width={80} height={80} color="#F7931E" />
             </div>
           )
