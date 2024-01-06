@@ -101,6 +101,7 @@ class Header extends Component {
                 type="button"
                 className="small-close-button"
                 onClick={this.onCloseButtonClicked}
+                testid="closeButton"
               >
                 <img
                   src="https://res.cloudinary.com/dcqt2hg87/image/upload/v1704449940/close_ajagb2.png"

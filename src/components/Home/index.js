@@ -113,7 +113,7 @@ class Home extends Component {
   //   testid="restaurants-list-loader"
 
   getLoadingView = () => (
-    <div className="loader-container">
+    <div className="loader-container" testid="restaurants-list-loader">
       <Loader type="ThreeDots" width={80} height={80} color="#F7931E" />
     </div>
   )
@@ -131,7 +131,7 @@ class Home extends Component {
           <button
             className="arrow-button"
             type="button"
-            // testid="pagination-left-button"
+            testid="pagination-left-button"
             onClick={this.onLeftArrowClicked}
           >
             <img
@@ -140,11 +140,13 @@ class Home extends Component {
             />
           </button>
           {/* testid="active-page-number" */}
-          <span className="pagination-para">{activePage} of 4</span>{' '}
+          <span className="pagination-para" testid="active-page-number">
+            {activePage} of 4
+          </span>{' '}
           <button
             className="arrow-button"
             type="button"
-            // testid="pagination-right-button"
+            testid="pagination-right-button"
             onClick={this.onRightArrowClicked}
           >
             <img

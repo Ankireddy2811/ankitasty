@@ -137,7 +137,10 @@ class EachRestaurant extends Component {
           /* testid="restaurant-details-loader" */
 
           const getLoadingView = () => (
-            <div className="loader-container">
+            <div
+              className="loader-container"
+              testid="restaurant-details-loader"
+            >
               <Loader type="ThreeDots" width={80} height={80} color="#F7931E" />
             </div>
           )
